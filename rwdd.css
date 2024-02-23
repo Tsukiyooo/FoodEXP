@@ -1,0 +1,103 @@
+#myImage {
+  width: 30px; /* 設置圖片的寬度 */
+  height: auto; /* 保持寬高比，根據寬度自動調整高度 */
+  border-radius: 5px; /* 添加圓角 */
+}
+
+/* Reset some default styles */
+body, h1, p {
+  margin: 0;
+  padding: 0;
+  background-color:#fff8dc;
+}
+
+body {
+  font-size: 36px; /* 設置整個網頁中文字的大小為 18 像素 */
+}
+
+h1 {
+  font-size: 1.2rem; /* 使用相對大小（根據根元素的大小），1.2倍的根元素大小 */
+}
+
+p {
+  font-size: 1.1vw; /* 使用相對大小（根據視窗寬度的百分比），1.1% 的視窗寬度 */
+}
+
+/* 將預設要隱藏的行設置為 display: none; */
+.hidden-image {
+  display: none;
+}
+
+/* 上方標題顯示 */
+.titArea{
+  display: flex;
+  justify-content: center; /* 將內容水平置中 */
+  align-items: center; /* 將內容垂直置中 */
+  width: 100%;
+  font-size: 56px;
+  background-color: #f8dae2;
+}
+
+/* Loupe & ToBuyList 標題列設定 */
+.Loubtn{
+  margin-left:1px ;
+}
+.Loubtn button{
+  padding: 10px 8px;
+  font-size: 15px;
+  background-color: #f8dae2;
+  border-color: #f8dae2;
+  color: black;
+}
+/* 底部固定按鈕布局 */
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/* Flexbox container for buttons */
+.button-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8dae2; /* 設定背景顏色，可根據需要調整 */
+  padding: 10px; /* 可調整底部容器的內邊距 */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /*box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);  可添加底部的陰影效果，根據需要調整 */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 800px) {
+  .button-container {
+    flex-direction: row; /* Stack buttons vertically on small screens */
+    align-items: center; /* Center buttons in the container */
+  }
+
+  .btn {
+  padding: 10px 5px;
+  font-size: 16px;
+  background-color: #f8dae2;
+  border-color: #f8dae2;
+  color: black;
+  }
+}
+
+/* 確認與重置布局 */
+.button-con {
+  display: flex;       /* 使用 Flexbox 佈局 */
+  justify-content: space-between; /* 在容器中的子元素之間平均分配空間，將按鈕放在兩端 */
+  width: 97%;         /* 設置寬度為100%，使元素擴展到容器的寬度 */
+  padding: 5px;       /* 可調整容器的內邊距 */
+  background-color: #fff8dc; /* 設定背景顏色，可根據需要調整 */
+}
+
+.custom-button {
+  height: 40px;        /* 設置按鈕高度 */
+  width: 49%;
+  font-size: 24px;     /* 設置字體大小 */
+  text-align: center;  /* 將文字水平置中 */
+  align-items: center; /* 將內容在垂直方向上置中 */
+}

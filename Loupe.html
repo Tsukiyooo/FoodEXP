@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rwdd.css">
+    <title>即期查詢</title>
+</head>
+<body>
+    <div class="titArea">
+        即期查詢
+        <div class="Loubtn">
+            <button id="Search">找尋商品</button>
+            <button id="Rewrite">改寫資料</button>
+        </div>
+    </div>
+    <div class="button-container">
+      <button class="btn" id="btn1"><img id="myImage" src="pic/camera.png"><br>拍攝照片</button>
+      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>手動輸入</button>
+      <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
+      <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
+      <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>一二三四</button> 
+    </div>
+    <div id="content">
+    <div id="displayData"></div>
+    </div>
+    <script>
+        // 顯示Loupe.php內容
+        var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // 當請求完成且成功時，將返回的資料插入到displayData元素中
+            document.getElementById("displayData").innerHTML = this.responseText;
+        }
+    };
+
+    // 添加隨機參數，以防止瀏覽器緩存
+    var randomParam = new Date().getTime();
+    xhttp.open("GET", "Loupe.php?random=" + randomParam, true);
+    xhttp.send();
+
+    var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+        if (this.status == 200) {
+            console.log("成功：", this.responseText);
+            document.getElementById("displayData").innerHTML = this.responseText;
+        } else {
+            console.error("錯誤狀態碼：", this.status);
+        }
+    }
+};
+
+    </script>
+
+<script src="script.js"></script>
+</body>
+</html>
