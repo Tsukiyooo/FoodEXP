@@ -8,16 +8,14 @@
            <?php
             require_once 'db_con.php';
            session_start();
-            $id = 1;
            if (!isset($_SESSION['AllData'])) {
             $_SESSION['AllData'] = array();
         }
         
         if (isset($_POST['productName']) && isset($_POST['expiryDate'])) {
-             $id++;
             $productName = $_POST['productName'];
             $expiryDate = $_POST['expiryDate'];
-            $master = "INSERT INTO myfood VALUES ('$id','$productName', '$expiryDate')";
+            $master = "INSERT INTO myfood (name,date) VALUES ('$productName', '$expiryDate')";
             $result = mysqli_query($link, $master);
            
             // 將新的資料加入陣列

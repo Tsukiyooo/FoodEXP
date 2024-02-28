@@ -35,7 +35,7 @@
                 }
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
-                echo "<p style='$backgroundColor'>品名：" . $product['productName'] ."<button onclick='yourFunction()'>按鈕文字</button>". "<br/> 有效日期：" . $product['expiryDate'] . "<br/> </p>";
+                echo "<p style='$backgroundColor'>品名：" . $product['productName'] ."<button onclick='yourFunction()'>刪除</button>". "<br/> 有效日期：" . $product['expiryDate'] . "<br/> </p>";
 
             }                          
     } else {
