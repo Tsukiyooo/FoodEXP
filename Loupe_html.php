@@ -26,59 +26,32 @@
       <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
       <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
     </div>
-        <div id="dataContainer"></div>
-    </div>
-    <!-- <div id="content">
-    <div id="displayData"></div>
-    <script>
-        // 顯示Loupe.php內容
-        var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // 當請求完成且成功時，將返回的資料插入到displayData元素中
-            document.getElementById("displayData").innerHTML = this.responseText;
-        }
-    };
-
-    // 添加隨機參數，以防止瀏覽器緩存
-    var randomParam = new Date().getTime();
-    xhttp.open("GET", "Loupe.php?random=" + randomParam, true);
-    xhttp.send();
-
-    var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4) {
-        if (this.status == 200) {
-            console.log("成功：", this.responseText);
-            document.getElementById("displayData").innerHTML = this.responseText;
-        } else {
-            console.error("錯誤狀態碼：", this.status);
-        }
-    }
-};
-
-    </script> --> 
-
-
 
     <?php
-     session_start();
+// 引入資料庫連線檔案
+require_once 'db_con.php';
 
-     
+// 開啟 session
+session_start();
 
+// 檢查是否有 'AllData' session 變數，若無，則初始化為空陣列
+if (!isset($_SESSION['AllData'])) {
+    $_SESSION['AllData'] = array();
+}
 
-    // 如果 $allData 不是数组，则初始化为一个空数组
-    if (!isset($_SESSION['AllData'])) {
-        $_SESSION['AllData'] = array();
-    }
-     // 取得所有資料
-    $allData = $_SESSION['AllData'];
+// 取得所有資料庫中的資料
+$query = "SELECT * FROM myfood";
+$result = mysqli_query($link, $query);
+// 將資料存入 session 中
+$_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
+// 取得所有資料
+$allData = $_SESSION['AllData'];
         if (isset($_SESSION['AllData'])) {
             // 使用 foreach 遍歷 $_SESSION['AllData'] 陣列
             foreach ($_SESSION['AllData'] as $product) {
                 // 取得有效日期（僅考慮日期部分，不包含時分秒）
-                $expiryDate = strtotime(date('Y-m-d', strtotime($product['expiryDate'])));
+                $expiryDate = strtotime(date('Y-m-d', strtotime($product['date'])));
                 
                 // 取得當前日期（僅考慮日期部分，不包含時分秒）
                 $currentDate = strtotime(date('Y-m-d'));
@@ -100,8 +73,7 @@ xhttp.onreadystatechange = function() {
                 }
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
-                echo "<p style='$backgroundColor'>品名：" . $product['productName'] ."<button onclick='yourFunction()'>刪除</button>". "<br/> 有效日期：" . $product['expiryDate'] . "<br/> </p>";
-
+                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
             }                          
     } else {
         echo "";
@@ -109,6 +81,13 @@ xhttp.onreadystatechange = function() {
     
     echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
     ;
+
+// 關閉資料庫連線
+mysqli_close($link);
+function Delete(){
+    $deleted= "DELETE from myfood where name='123'";
+    $result = mysqli_query($link, $deleted);    
+  };
     ?>
 <script src="Script.js"></script>
 </body>
