@@ -73,24 +73,6 @@ xhttp.onreadystatechange = function() {
     }
      // 取得所有資料
     $allData = $_SESSION['AllData'];
-    // // 使用 PHP 生成動態 HTML
-    // foreach ($allData as $data) {
-    //     $productName = $data['name'];
-    //     $expiryDate = $data['date'];
-
-    //     // 將日期轉換為時間戳記
-    //     $expiryTimestamp = strtotime($expiryDate);
-    //     $currentTimestamp = time();
-    //     //echo "<p style='$backgroundColor'>品名：" . $product['productName'] ."<button onclick='yourFunction()'>刪除</button>". "<br/> 有效日期：" . $product['expiryDate'] . "<br/> </p>";               
-    //     //echo "<div class='" . getColorClass($expiryTimestamp, $currentTimestamp) . "'>";
-    //     echo "<p>品名：" . $productName . "</p>";
-    //     echo "<p>有效日期：" . $expiryDate . "</p>";
-    //     echo "<hr>";
-    //     echo "</div>";
-    // }
-
-    // Helper function to determine color class
-
 
         if (isset($_SESSION['AllData'])) {
             // 使用 foreach 遍歷 $_SESSION['AllData'] 陣列
