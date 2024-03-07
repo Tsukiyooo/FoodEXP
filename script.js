@@ -9,7 +9,7 @@ document.getElementById('btn1').addEventListener('click', function() {
     window.location.href = 'ToBuyList.html';
   });
   document.getElementById('btn4').addEventListener('click', function() {
-    window.location.href = 'Loupe.html';
+    window.location.href = 'Loupe_html.php';
   });
   document.getElementById('btn5').addEventListener('click', function() {
     window.location.href = 'UserMap.html';
