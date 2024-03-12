@@ -16,7 +16,7 @@
         即期查詢
         <div class="Loubtn">
             <button id="Search">找尋商品</button>
-            <button id="RewriteDate" onclick="ToDo()">改寫資料</button>
+            <button id="RewriteDate" onclick="Back()">改寫資料</button>
         </div>
     </div>
     <div class="button-container">
@@ -74,7 +74,7 @@ $allData = $_SESSION['AllData'];
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
                 // echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
-                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<br/> 有效日期：" . $product['date'] . "<br/> </p>";
+                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<a href=Ldelete.php?id=".$product['id'].">刪除</a>"."　"."<a href='#' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</a><br/> 有效日期：" . $product['date'] . "<br/> </p>";
 
             }                          
     } else {
@@ -83,13 +83,7 @@ $allData = $_SESSION['AllData'];
     
     echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
     ;
-    if (isset($_SESSION['update_completed']) && $_SESSION['update_completed'] == true) {
-        // 顯示提示訊息 "變更已完成"
-        echo "<script>alert('變更已完成');</script>";
-        
-        // 刪除 session 中的 update_completed 變數，避免下次加載頁面時再次顯示
-        unset($_SESSION['update_completed']);
-    }//修改後提示字
+    
 // 關閉資料庫連線
 mysqli_close($link);
 ?>
