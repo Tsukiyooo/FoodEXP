@@ -67,7 +67,7 @@ function Rewrite(id, currentName, currentDate) {
     newDate = currentDate;
 }
 
-  location.href = "update.php?id="+ id +"&Newname="+ newName + "&Newdate=" + newDate;
+  location.href = "Lupdate.php?id="+ id +"&Newname="+ newName + "&Newdate=" + newDate;
  } 
  //Rewrite
 

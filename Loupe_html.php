@@ -74,7 +74,7 @@ $allData = $_SESSION['AllData'];
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
                 // echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
-                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<a href=delete.php?id=".$product['id'].">刪除</a>"."　"."<a href='#' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</a><br/> 有效日期：" . $product['date'] . "<br/> </p>";
+                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<a href=Ldelete.php?id=".$product['id'].">刪除</a>"."　"."<a href='#' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</a><br/> 有效日期：" . $product['date'] . "<br/> </p>";
 
             }                          
     } else {
