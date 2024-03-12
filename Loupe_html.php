@@ -61,7 +61,7 @@ $allData = $_SESSION['AllData'];
         
                 // 設定背景顏色樣式
                 $backgroundColor = '';
-                if ($dateDifference >= 0 && $dateDifference <= 3 * 24 * 60 * 60) {
+                if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
                     // 在有效日期前三天（包括當日），黃色
                     $backgroundColor = 'background-color: #ffef9f; font-size: 36px;';
                 } elseif ($dateDifference > 0) {
@@ -73,7 +73,9 @@ $allData = $_SESSION['AllData'];
                 }
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
-                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
+                // echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
+                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<a href=delete.php?id=".$product['id'].">刪除</a><br/> 有效日期：" . $product['date'] . "<br/> </p>";
+
             }                          
     } else {
         echo "";
