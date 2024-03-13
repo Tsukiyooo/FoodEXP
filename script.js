@@ -78,7 +78,14 @@ function ToDo() {
 function Back() {
   location.href = "Loupe_html.php";
 }
-
+function ToSearch() {
+  var productName = prompt("請輸入想找尋的產品名稱：");
+  // 檢查使用者是否輸入了值
+  if (productName !== null && productName !== "") {
+      // 將輸入的產品名稱傳遞給後端處理
+      location.href = "Lselect.php?productName=" + encodeURIComponent(productName);
+  }
+}
  //Rewrite
 
   

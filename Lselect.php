@@ -15,7 +15,7 @@
     <div class="titArea">
         即期查詢
         <div class="Loubtn">
-            <button id="Search" onclick="ToSearch()">找尋商品</button>
+            <button id="Search" onclick="Back()">找尋商品</button>
             <button id="RewriteDate" onclick="ToDo()">改寫資料</button>
         </div>
     </div>
@@ -26,30 +26,26 @@
       <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
       <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
     </div>
+<?php
+    require_once 'db_con.php';
+    session_start();
+    if (!isset($_SESSION['Data'])) {
+        $_SESSION['Data'] = array();
+    }
+    
+    //  echo $_GET['productName'];
+    $productName=$_GET['productName'];
 
-    <?php
-// 引入資料庫連線檔案
-require_once 'db_con.php';
+    $query = "SELECT name, date FROM myfood WHERE name LIKE '%$productName%'";
 
-// 開啟 session
-session_start();
-
-// 檢查是否有 'AllData' session 變數，若無，則初始化為空陣列
-if (!isset($_SESSION['AllData'])) {
-    $_SESSION['AllData'] = array();
-}
-
-// 取得所有資料庫中的資料
-$query = "SELECT * FROM myfood";
-$result = mysqli_query($link, $query);
-// 將資料存入 session 中
-$_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $result = mysqli_query($link, $query);
+    $_SESSION['Data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 // 取得所有資料
-$allData = $_SESSION['AllData'];
-        if (isset($_SESSION['AllData'])) {
+$Data = $_SESSION['Data'];
+        if (isset($_SESSION['Data'])) {
             // 使用 foreach 遍歷 $_SESSION['AllData'] 陣列
-            foreach ($_SESSION['AllData'] as $product) {
+            foreach ($_SESSION['Data'] as $product) {
                 // 取得有效日期（僅考慮日期部分，不包含時分秒）
                 $expiryDate = strtotime(date('Y-m-d', strtotime($product['date'])));
                 
@@ -83,17 +79,10 @@ $allData = $_SESSION['AllData'];
     
     echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
     ;
-    if (isset($_SESSION['update_completed']) && $_SESSION['update_completed'] == true) {
-        // 顯示提示訊息 "變更已完成"
-        echo "<script>alert('變更已完成');</script>";
-        
-        // 刪除 session 中的 update_completed 變數，避免下次加載頁面時再次顯示
-        unset($_SESSION['update_completed']);
-    }//修改後提示字
-// 關閉資料庫連線
-mysqli_close($link);
+    //header("Location:Loupe_Search.php");
+    mysqli_close($link);
 ?>
  
-<script src="Script.js"></script>
+ <script src="Script.js"></script>
 </body>
 </html>
