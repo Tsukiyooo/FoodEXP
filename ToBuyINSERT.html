@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rwdd.css">
+    <title>購物清單</title>
+</head>
+<body>
+    <div class="titArea">
+        購物清單
+        
+        <div class="Loubtn">
+                <!-- <button id="SearchBuy" onclick="">找尋商品</button> -->
+                <button id="Add" onclick="backtolist()">回主畫面</button>
+        </div>
+    
+    </div>
+    <div class="button-container">
+      <button class="btn" id="btn1"><img id="myImage" src="pic/camera.png"><br>拍攝照片</button>
+      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>手動輸入</button>
+      <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
+      <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
+      <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
+    </div>
+    <form action="ToBuyINSERT.php" method="post" name="listForm" id="listForm">
+        <label for="ListName">品名：</label>
+        <br>
+        <input type="text" id="ListName" name="ListName" required style="font-size: large;">
+        <br>
+        <br>
+        <label for="expiryDate">數量：</label>
+        <br>
+        <input type="text" id="quantity" name="quantity" required style="font-size: large;">
+        <br>
+        <br>
+        <label for="expiryDate">備註：</label>
+        <br>
+        <input type="text" id="remark" name="remark" required style="font-size: large;">
+        <br>
+        <br>
+        <div class="button-con">
+            <input type="reset" name="reset" id="reset" class="custom-button" value="重製">
+            <input type="submit" name="submit" id="submit" class="custom-button" value="確定">
+        </div>
+    </form>
+    
+
+<script src="Script.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@ document.getElementById('btn1').addEventListener('click', function() {
     window.location.href = 'EnterTxt.html';
   });
   document.getElementById('btn3').addEventListener('click', function() {
-    window.location.href = 'ToBuyList.html';
+    window.location.href = 'ToBuyList_html.php';
   });
   document.getElementById('btn4').addEventListener('click', function() {
     window.location.href = 'Loupe_html.php';
@@ -101,5 +101,11 @@ function ToSearch() {
   }
 }
  //Rewrite
+ function addBuy() {
+  location.href = "ToBuyINSERT.html";
+}
+function backtolist() {
+  location.href = "ToBuyList_html.php";
+}
 
   
