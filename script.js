@@ -70,10 +70,24 @@ function Rewrite(id, currentName, currentDate) {
 
   location.href = "Lupdate.php?id="+ id +"&Newname="+ newName + "&Newdate=" + newDate;
  } 
+ function SRewrite(id, currentName, currentDate) {
+  var newName = prompt("請輸入新的品名", currentName);
+  if (newName === null) {
+    newName = currentName;
+}
+  var newDate = prompt("請輸入新的日期", currentDate);
+  if (newDate === null) {
+    newDate = currentDate;
+}
 
+  location.href = "LSupdate.php?id="+ id +"&Newname="+ newName + "&Newdate=" + newDate;
+ } 
 
 function ToDo() {
   location.href = "Do_Loupe_UnD.php";
+}
+function ToDoSel() {
+  location.href = "Lselect_UnD.php?productName=" ;
 }
 function Back() {
   location.href = "Loupe_html.php";

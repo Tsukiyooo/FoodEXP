@@ -15,8 +15,8 @@
     <div class="titArea">
         即期查詢
         <div class="Loubtn">
-            <button id="Search" onclick="Back()">找尋商品</button>
-            <button id="RewriteDate">改寫資料</button>
+            <button id="Search"  onclick="ToSearch()">找尋商品</button>
+            <button id="RewriteDate" onclick="Back()">回主畫面</button>
         </div>
     </div>
     <div class="button-container">
@@ -35,21 +35,23 @@ require_once 'db_con.php';
 session_start();
 
 // 檢查是否有 'AllData' session 變數，若無，則初始化為空陣列
-if (!isset($_SESSION['AllData'])) {
-    $_SESSION['AllData'] = array();
+if (!isset($_SESSION['Data'])) {
+    $_SESSION['Data'] = array();
 }
 
 // 取得所有資料庫中的資料
-$query = "SELECT * FROM myfood";
+
+$productName=$_SESSION['SelproductName'];
+$query = "SELECT id,name, date FROM myfood WHERE name LIKE '%$productName%'";
 $result = mysqli_query($link, $query);
 // 將資料存入 session 中
-$_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$_SESSION['Data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 // 取得所有資料
-$allData = $_SESSION['AllData'];
-        if (isset($_SESSION['AllData'])) {
+$Data = $_SESSION['Data'];
+        if (isset($_SESSION['Data'])) {
             // 使用 foreach 遍歷 $_SESSION['AllData'] 陣列
-            foreach ($_SESSION['AllData'] as $product) {
+            foreach ($_SESSION['Data'] as $product) {
                 // 取得有效日期（僅考慮日期部分，不包含時分秒）
                 $expiryDate = strtotime(date('Y-m-d', strtotime($product['date'])));
                 

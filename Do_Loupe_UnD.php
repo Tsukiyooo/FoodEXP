@@ -15,8 +15,9 @@
     <div class="titArea">
         即期查詢
         <div class="Loubtn">
-            <button id="Search">找尋商品</button>
-            <button id="RewriteDate" onclick="Back()">改寫資料</button>
+            <button id="Search"onclick="ToSearch()">找尋商品</button>
+            <button id="RewriteDate" onclick="Back()">回主畫面</button>
+        </div>
         </div>
     </div>
     <div class="button-container">

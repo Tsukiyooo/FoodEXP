@@ -17,6 +17,8 @@
         <div class="Loubtn">
             <button id="Search" onclick="ToSearch()">找尋商品</button>
             <button id="RewriteDate" onclick="ToDo()">改寫資料</button>
+            <button id="allDelete">過期刪除</button>
+            <button id="Sort">變更排序</button>
         </div>
     </div>
     <div class="button-container">

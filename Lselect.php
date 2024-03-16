@@ -16,7 +16,7 @@
         即期查詢
         <div class="Loubtn">
             <button id="Search" onclick="Back()">找尋商品</button>
-            <button id="RewriteDate" onclick="ToDo()">改寫資料</button>
+            <button id="RewriteDate" onclick="ToDoSel()">改寫資料</button>
         </div>
     </div>
     <div class="button-container">
@@ -35,9 +35,9 @@
     
     //  echo $_GET['productName'];
     $productName=$_GET['productName'];
-
-    $query = "SELECT name, date FROM myfood WHERE name LIKE '%$productName%'";
-
+    $_SESSION['SelproductName']=$_GET['productName'];
+    $query = "SELECT id,name, date FROM myfood WHERE name LIKE '%$productName%'";
+    
     $result = mysqli_query($link, $query);
     $_SESSION['Data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
