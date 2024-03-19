@@ -42,7 +42,7 @@ if (!isset($_SESSION['Data'])) {
 // 取得所有資料庫中的資料
 
 $productName=$_SESSION['SelproductName'];
-$query = "SELECT id,name, date FROM myfood WHERE name LIKE '%$productName%'";
+$query = "SELECT id,name, date FROM myfood WHERE name LIKE '%$productName%'ORDER BY date ASC";
 $result = mysqli_query($link, $query);
 // 將資料存入 session 中
 $_SESSION['Data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -76,14 +76,13 @@ $Data = $_SESSION['Data'];
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
                 // echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
-                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<a href=Ldelete.php?id=".$product['id'].">刪除</a>"."　"."<a href='#' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</a><br/> 有效日期：" . $product['date'] . "<br/> </p>";
+                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<a href='#' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</a>"."　"."<a href=Ldelete.php?id=".$product['id'].">刪除</a><br/> 有效日期：" . $product['date'] . "<br/> </p>";
 
             }                          
     } else {
         echo "";
     }
     
-    echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
     ;
     
 // 關閉資料庫連線

@@ -42,7 +42,7 @@ if (!isset($_SESSION['AllData'])) {
 }
 
 // 取得所有資料庫中的資料
-$query = "SELECT * FROM myfood";
+$query = "SELECT * FROM myfood ORDER BY date ASC";
 $result = mysqli_query($link, $query);
 // 將資料存入 session 中
 $_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);

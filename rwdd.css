@@ -101,3 +101,8 @@ p {
   text-align: center;  /* 將文字水平置中 */
   align-items: center; /* 將內容在垂直方向上置中 */
 }
+
+input[type="checkbox"] {
+  width: 30px;
+  height: 30px;
+}

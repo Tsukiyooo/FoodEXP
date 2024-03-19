@@ -36,7 +36,7 @@
     //  echo $_GET['productName'];
     $productName=$_GET['productName'];
     $_SESSION['SelproductName']=$_GET['productName'];
-    $query = "SELECT id,name, date FROM myfood WHERE name LIKE '%$productName%'";
+    $query = "SELECT id,name, date FROM myfood WHERE name LIKE '%$productName%'ORDER BY date ASC";
     
     $result = mysqli_query($link, $query);
     $_SESSION['Data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);

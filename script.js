@@ -108,4 +108,18 @@ function backtolist() {
   location.href = "ToBuyList_html.php";
 }
 
-  
+function TBRewrite(id, currentName, currentquantity,currentremark) {
+  var newName = prompt("請輸入新的品名", currentName);
+  if (newName === null) {
+    newName = currentName;
+}
+  var newquantity = prompt("請輸入新的數量", currentquantity);
+  if (newquantity === null) {
+    newquantity = currentquantity;
+}
+var newremark = prompt("請輸入新的備註", currentremark);
+  if (newremark === null) {
+    newremark = currentremark;
+}
+  location.href = "TBupdate.php?id=" + id + "&newName=" + newName + "&newquantity=" + newquantity + "&newremark=" + newremark;
+ } 
