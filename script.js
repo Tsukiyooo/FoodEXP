@@ -123,3 +123,12 @@ var newremark = prompt("請輸入新的備註", currentremark);
 }
   location.href = "TBupdate.php?id=" + id + "&newName=" + newName + "&newquantity=" + newquantity + "&newremark=" + newremark;
  } 
+
+ function searchBuy() {
+  var TBproductName = prompt("請輸入要尋找的產品名稱：");
+  // 檢查使用者是否有輸入值
+  if (TBproductName !== null && TBproductName !== "") {
+      // 將輸入的產品名稱傳遞至後端處理
+      location.href = "TBselect.php?TBproductName=" + encodeURIComponent(TBproductName);
+  }
+}

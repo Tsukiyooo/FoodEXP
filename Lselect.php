@@ -78,8 +78,6 @@ $Data = $_SESSION['Data'];
     }
     
     echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
-    ;
-    //header("Location:Loupe_Search.php");
     mysqli_close($link);
 ?>
  

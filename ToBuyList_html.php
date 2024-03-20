@@ -11,7 +11,9 @@
         購物清單
         
         <div class="Loubtn">
-                <button id="SearchBuy" onclick="">找尋商品</button>
+                <button id="SearchBuy" onclick="searchBuy()">找尋商品</button>
+                <!-- <button id="searchButton" onclick="searchBuy()">尋找商品</button> -->
+
                 <button id="Add" onclick="addBuy()">新增商品</button>
             <!-- <button id="Add">新增商品</button> -->
         </div>
