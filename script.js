@@ -133,14 +133,32 @@ var newremark = prompt("請輸入新的備註", currentremark);
   }
 }
 
-// JavaScript代碼，處理checkbox變化
-        function changeRowColor(checkbox) {
-            // 獲取所在行的父節點<tr>
-            var row = checkbox.parentNode.parentNode;
-            // 切換選中行的類名
-            if (checkbox.checked) {
-                row.classList.add('selected-row'); // 添加选中行的背景色
-            } else {
-                row.classList.remove('selected-row'); // 移除选中行的背景色
-            }
+function changeRowColor(checkbox) {
+  if (checkbox.checked) {
+      checkbox.parentNode.parentNode.classList.add('checked'); // 添加背景色样式
+  } else {
+      checkbox.parentNode.parentNode.classList.remove('checked'); // 移除背景色样式
+  }
+}
+var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+checkboxes.forEach(function (checkbox) {
+    var checkboxId = checkbox.getAttribute('data-id');
+    var checked = localStorage.getItem('checkbox_' + checkboxId);
+    if (checked === 'true') {
+        checkbox.checked = true;
+        checkbox.parentNode.parentNode.classList.add('checked'); // 添加背景色样式
+    }
+});
+
+// 为每个 checkbox 添加事件监听器，保存状态到本地存储
+checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('change', function () {
+        var checkboxId = this.getAttribute('data-id');
+        localStorage.setItem('checkbox_' + checkboxId, this.checked);
+        if (this.checked) {
+            this.parentNode.parentNode.classList.add('checked'); // 添加背景色样式
+        } else {
+            this.parentNode.parentNode.classList.remove('checked'); // 移除背景色样式
         }
+    });
+});
