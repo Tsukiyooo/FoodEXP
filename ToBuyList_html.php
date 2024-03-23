@@ -7,9 +7,7 @@
     <title>購物清單</title>
     <style>
         /* 新增CSS样式，定义选中行的背景色 */
-        .checked {
-            background-color: #FBC3BC;
-        }
+
     </style>
 </head>
 <body>

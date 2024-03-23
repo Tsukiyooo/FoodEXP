@@ -44,7 +44,7 @@ $query="SELECT id,name,quantity,remark FROM tobuy WHERE name LIKE '%$TBproductNa
 $result = mysqli_query($link, $query);
 $_SESSION['TBData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 foreach ($_SESSION['TBData'] as $buy) {
-    echo "<tr align=center><td><input type='checkbox' id='myCheckbox'></td>";
+    echo "<tr align=center><td><input type='checkbox' class='myCheckbox' data-id='" . $buy['id'] . "' onchange='changeRowColor(this)'></td>";
     echo "<td>" .$buy['name']. "</td>";
     echo "<td>" .$buy['quantity']. "</td>";
     echo "<td>" .$buy['remark']. "</td>";
