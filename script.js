@@ -132,3 +132,15 @@ var newremark = prompt("請輸入新的備註", currentremark);
       location.href = "TBselect.php?TBproductName=" + encodeURIComponent(TBproductName);
   }
 }
+
+// JavaScript代碼，處理checkbox變化
+        function changeRowColor(checkbox) {
+            // 獲取所在行的父節點<tr>
+            var row = checkbox.parentNode.parentNode;
+            // 切換選中行的類名
+            if (checkbox.checked) {
+                row.classList.add('selected-row'); // 添加选中行的背景色
+            } else {
+                row.classList.remove('selected-row'); // 移除选中行的背景色
+            }
+        }

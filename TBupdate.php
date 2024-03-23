@@ -11,7 +11,7 @@
     $update="UPDATE tobuy SET name='$Newname',quantity='$Newquantity', remark='$Newremark' WHERE id='$id'";
     $result = mysqli_query($link, $update);
 
-    $_SESSION['update_completed'] = true;
+    $_SESSION['TBupdate_completed'] = true;
 
     header("Location:ToBuyList_html.php");
     mysqli_close($link);

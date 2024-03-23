@@ -53,7 +53,7 @@ foreach ($_SESSION['TBData'] as $buy) {
 }
 ?>
 </table>
-<p style='#fff8dc;font-size: 36px'><br/> <br/><br/> </p>";
+<p style='#fff8dc;font-size: 36px'><br/> <br/><br/> </p>
 <script src="Script.js"></script>
 </body>
 </html>
