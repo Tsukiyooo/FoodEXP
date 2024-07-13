@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>手動輸入</title>
+        <title>食品紀錄</title>
         </head>
         <body>
            <?php
@@ -15,31 +15,22 @@
         if (isset($_POST['productName']) && isset($_POST['expiryDate'])) {
             $productName = $_POST['productName'];
             $expiryDate = $_POST['expiryDate'];
-            $master = "INSERT INTO myfood (name,date) VALUES ('$productName', '$expiryDate')";
+            $kind=$_POST['kind'];
+            $master = "INSERT INTO myfood (name,kind,date) VALUES ('$productName', '$kind','$expiryDate')";
+            $mas = "INSERT INTO history (name,kind,date) VALUES ('$productName', '$kind', '$expiryDate')";
             $result = mysqli_query($link, $master);
+            $res = mysqli_query($link, $mas);
            
             // 將新的資料加入陣列
-            $_SESSION['AllData'][] = array('productName' => $productName, 'expiryDate' => $expiryDate);
+            $_SESSION['AllData'][] = array('productName' => $productName, 'kind' => $kind,'expiryDate' => $expiryDate);
         }
 
         if (!empty($_SESSION['AllData'])) {
             $latestData = end($_SESSION['AllData']);
             echo "品名：" . $latestData['productName'] . "<br/>有效日期：" . $latestData['expiryDate'];
             print_r ($_SESSION['AllData'][0]);
-            // print "<br/>"
-            // print_r ($_SESSION['AllData'][]);
         }
-        //session_unset();
-            // $productName = $_POST['productName'];
-            // $expiryDate = $_POST['expiryDate'];
-
-        //     $_SESSION['productName']= $productName;
-        //     $_SESSION['expiryDate'] = $expiryDate;
-
-
-
-        // echo "品名：".$_SESSION['productName']."<br/>有效日期：".$_SESSION['expiryDate'];
-        //print "hi"
+        
         mysqli_close($link);
         header("Location:EnterTxt.html");
 ?> 

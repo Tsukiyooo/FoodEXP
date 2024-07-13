@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="rwdd.css">
-    <title>即期查詢</title>
+    <title>歷史紀錄</title>
     <style>
         .expired { background-color: #FBC3BC; }
         .soonToExpire { background-color: #ffef9f; font-size: 36px; }
@@ -13,10 +13,8 @@
 </head>
 <body>
     <div class="titArea">
-        即期查詢
+        歷史紀錄
         <div class="Loubtn">
-            <button id="Search" onclick="ToSearch()">找尋商品</button>
-            <button id="RewriteDate" onclick="ToDo()">改寫資料</button>
             <select name="kind" id="kind" required style="font-size: large;">
                 <option value="" selected>分類</option>
                 <option value="meat">肉品類</option>
@@ -41,6 +39,7 @@
         <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
         <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
     </div>
+
     <div id="product-list">
         <!-- 產品列表將在這裡顯示 -->
         <?php
@@ -87,6 +86,7 @@
 
         mysqli_close($link);
         ?>
+
     </div>
 
     <script src="Script.js"></script>

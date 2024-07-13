@@ -1,6 +1,6 @@
 //檔案連接
 document.getElementById('btn1').addEventListener('click', function() {
-    window.location.href = 'EnterPic.html';
+    window.location.href = 'EnterPic_html.php';
   });
   document.getElementById('btn2').addEventListener('click', function() {
     window.location.href = 'EnterTxt.html';
@@ -92,6 +92,7 @@ function ToDoSel() {
 function Back() {
   location.href = "Loupe_html.php";
 }
+
 function ToSearch() {
   var productName = prompt("請輸入想找尋的產品名稱：");
   // 檢查使用者是否輸入了值
@@ -162,3 +163,42 @@ checkboxes.forEach(function (checkbox) {
         }
     });
 });
+//ToBuyINSERT.php
+
+    function showConfirmationDialog() {
+        var result = confirm("家中尚有相同商品，是否要新增？");
+        if (result) {
+          
+            document.getElementById('submitForm').submit();
+        } else {
+            window.location.href = "ToBuyINSERT.html";
+        }
+    }
+//Loupe_html.php
+  document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('kind').addEventListener('change', updateProducts);
+  document.getElementById('sort').addEventListener('change', updateProducts);
+
+  function updateProducts() {
+      const kind = document.getElementById('kind').value;
+      const sort = document.getElementById('sort').value || 'asc'; // 默認排序為 ASC
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `fetch_products.php?kind=${kind}&sort=${sort}`, true);
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+              document.getElementById('product-list').innerHTML = xhr.responseText;
+          }
+      };
+      xhr.send();
+  }
+});
+
+
+
+
+
+
+
+
+

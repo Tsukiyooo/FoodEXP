@@ -11,7 +11,7 @@
         購物清單
         
         <div class="Loubtn">
-                <button id="SearchBuy" onclick="searchBuy()">找尋商品</button>
+                <button id="SearchBuy" onclick="backtolist()">回主畫面</button>
                 <!-- <button id="searchButton" onclick="searchBuy()">尋找商品</button> -->
 
                 <button id="Add" onclick="addBuy()">新增商品</button>
@@ -45,11 +45,12 @@ $result = mysqli_query($link, $query);
 $_SESSION['TBData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 foreach ($_SESSION['TBData'] as $buy) {
     echo "<tr align=center><td><input type='checkbox' class='myCheckbox' data-id='" . $buy['id'] . "' onchange='changeRowColor(this)'></td>";
-    echo "<td>" .$buy['name']. "</td>";
-    echo "<td>" .$buy['quantity']. "</td>";
-    echo "<td>" .$buy['remark']. "</td>";
-    echo "<td><a href='#' onclick='TBRewrite(\"".$buy['id']."\",\"".$buy['name']."\",\"".$buy['quantity']."\",\"".$buy['remark']."\")'>修改</a></td>";
-    echo "<td><a href=TBdelete.php?id=".$buy['id'].">刪除</a></td></tr>";
+    echo "<td style='font-size: 30px;'>" .$buy['name']. "</td>";
+    echo "<td style='font-size: 30px;'>" .$buy['quantity']. "</td>";
+    echo "<td style='font-size: 30px;'>" .$buy['remark']. "</td>";
+    echo "<td><button style='font-size: 20px;background-color: #fff8dc;box-shadow: 2px 2px 3px #888888; border: 1px solid #ffffff;' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</button></td>";
+    echo "<td><button style='font-size: 20px;background-color: #fff8dc;box-shadow: 2px 2px 3px #888888; border: 1px solid #ffffff;'' onclick=\"location.href='TBdelete.php?id=" . $buy['id'] . "'\">刪除</button></td></tr>";
+             
 }
 ?>
 </table>

@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="rwdd.css">
     <title>購物清單</title>
-    <style>
-        /* 新增CSS样式，定义选中行的背景色 */
 
-    </style>
 </head>
 <body>
     <div class="titArea">
@@ -23,8 +20,8 @@
     </div>
     </div>
     <div class="button-container">
-      <button class="btn" id="btn1"><img id="myImage" src="pic/camera.png"><br>拍攝照片</button>
-      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>手動輸入</button>
+      <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
+      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>食品紀錄</button>
       <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
       <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
       <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
@@ -32,7 +29,7 @@
     <table border="1">
         <?php
         require_once 'db_con.php';
-        echo "<tr align=center><td> 檢核 </td><td>品名</td><td>數量</td><td>備註</td><td>修改</td><td>刪除</td></tr>";
+        echo "<tr align=center><td> 檢核 </td><td colspan='5'>品名</td><td colspan='3'>數量</td><td colspan='5'>備註</td><td>修改</td><td>刪除</td></tr>";
 
         session_start();
         if (!isset($_SESSION['ListData'])) {
@@ -46,11 +43,11 @@
         if (isset($_SESSION['ListData'])) {
             foreach ($_SESSION['ListData'] as $buy) {
                 echo "<tr align=center><td><input type='checkbox' class='myCheckbox' data-id='" . $buy['id'] . "' onchange='changeRowColor(this)'></td>";
-                echo "<td>" . $buy['name'] . "</td>";
-                echo "<td>" . $buy['quantity'] . "</td>";
-                echo "<td>" . $buy['remark'] . "</td>";
-                echo "<td><a href='#' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</a></td>";
-                echo "<td><a href=TBdelete.php?id=" . $buy['id'] . ">刪除</a></td></tr>";
+                echo "<td colspan='5' style='font-size: 30px;'>" . $buy['name'] . "</td>";
+                echo "<td colspan='3' style='font-size: 30px;'>" . $buy['quantity'] . "</td>";
+                echo "<td colspan='5' style='font-size: 30px;'>" . $buy['remark'] . "</td>";
+                echo "<td><button style='font-size: 20px;background-color: #fff8dc;box-shadow: 2px 2px 3px #888888; border: 1px solid #ffffff;' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</button></td>";
+                echo "<td><button style='font-size: 20px;background-color: #fff8dc;box-shadow: 2px 2px 3px #888888; border: 1px solid #ffffff;' onclick=\"location.href='TBdelete.php?id=" . $buy['id'] . "'\">刪除</button></td></tr>";
             }
         } else {
             echo "";

@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="button-container">
-      <button class="btn" id="btn1"><img id="myImage" src="pic/camera.png"><br>拍攝照片</button>
-      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>手動輸入</button>
+      <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
+      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>食品紀錄</button>
       <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
       <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
       <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
@@ -65,17 +65,21 @@ $allData = $_SESSION['AllData'];
                 if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
                     // 在有效日期前三天（包括當日），黃色
                     $backgroundColor = 'background-color: #ffef9f; font-size: 36px;';
+                    $btnstyle='background-color: #ffef9f; font-size: 25px;box-shadow: 2px 2px 3px #888888; border: 2px solid #ffffff;';
                 } elseif ($dateDifference > 0) {
                     // 未到期，綠色
                     $backgroundColor = 'background-color: #C0F7A4; font-size: 36px;';
+                    $btnstyle='background-color: #C0F7A4; font-size: 25px; box-shadow: 2px 2px 3px #888888; border: 2px solid #ffffff;';
                 } else {
                     // 過期，紅色
                     $backgroundColor = 'background-color: #FBC3BC; font-size: 36px;';
+                    $btnstyle='background-color: #FBC3BC; font-size: 25px; box-shadow: 2px 2px 3px #888888; border: 2px solid #ffffff;';
                 }
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
                 // echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
-                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<a href='#' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</a>"."　"."<a href=Ldelete.php?id=".$product['id'].">刪除</a><br/> 有效日期：" . $product['date'] . "<br/> </p>";
+                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<button style='$btnstyle' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</button>"." "."<button style='$btnstyle' onclick=\"location.href='Ldelete.php?id=".$product['id']."'\" type='button'>刪除</button><br/> 有效日期：" . $product['date'] . "<br/> </p>";
+
 
             }                          
     } else {
