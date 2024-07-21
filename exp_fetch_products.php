@@ -4,8 +4,8 @@ require_once 'db_con.php';
 $kind = isset($_POST['kind']) ? $_POST['kind'] : '';
 $sort = isset($_POST['sort']) ? $_POST['sort'] : 'asc';
 
-// 構建 SQL 查詢語句
-$query = "SELECT * FROM myfood";
+// Use prepared statements to prevent SQL injection
+$query = "SELECT * FROM history";
 if ($kind !== "") {
     $query .= " WHERE kind = ?";
 }
@@ -27,9 +27,9 @@ while ($product = mysqli_fetch_assoc($result)) {
 
     $backgroundColor = '';
     if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
-        $backgroundColor = 'background-color: #ffef9f; font-size: 36px;';
+        continue;
     } elseif ($dateDifference > 0) {
-        $backgroundColor = 'background-color: #C0F7A4; font-size: 36px;';
+        continue;
     } else {
         $backgroundColor = 'background-color: #FBC3BC; font-size: 36px;';
     }
@@ -38,7 +38,6 @@ while ($product = mysqli_fetch_assoc($result)) {
 }
 
 echo $response;
-echo "<p style='#fff8dc;font-size: 36px'><br/> <br/><br/></p>";
 
 mysqli_stmt_close($stmt);
 mysqli_close($link);

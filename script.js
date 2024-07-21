@@ -175,7 +175,7 @@ checkboxes.forEach(function (checkbox) {
         }
     }
 //Loupe_html.php
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('kind').addEventListener('change', updateProducts);
   document.getElementById('sort').addEventListener('change', updateProducts);
 
@@ -184,13 +184,35 @@ checkboxes.forEach(function (checkbox) {
       const sort = document.getElementById('sort').value || 'asc'; // 默認排序為 ASC
 
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', `fetch_products.php?kind=${kind}&sort=${sort}`, true);
+      xhr.open('POST', 'fetch_products.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.onreadystatechange = function() {
           if (xhr.readyState === 4 && xhr.status === 200) {
               document.getElementById('product-list').innerHTML = xhr.responseText;
           }
       };
-      xhr.send();
+      xhr.send(`kind=${encodeURIComponent(kind)}&sort=${encodeURIComponent(sort)}`);
+  }
+});
+
+//history
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('kind').addEventListener('change', updateProducts);
+  document.getElementById('sort').addEventListener('change', updateProducts);
+
+  function updateProducts() {
+      const kind = document.getElementById('kind').value;
+      const sort = document.getElementById('sort').value || 'asc';
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', 'exp_fetch_products.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+              document.getElementById('ex-product-list').innerHTML = xhr.responseText;
+          }
+      };
+      xhr.send(`kind=${encodeURIComponent(kind)}&sort=${encodeURIComponent(sort)}`);
   }
 });
 

@@ -40,7 +40,7 @@
         <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
     </div>
 
-    <div id="product-list">
+    <div id="ex-product-list">
         <!-- 產品列表將在這裡顯示 -->
         <?php
         require_once 'db_con.php';
@@ -51,7 +51,7 @@
             $_SESSION['AllData'] = array();
         }
 
-        $query = "SELECT * FROM myfood ORDER BY date ASC"; // 修改為默認由遠到近
+        $query = "SELECT * FROM history ORDER BY date ASC"; // 修改為默認由近到遠
         $result = mysqli_query($link, $query);
         $_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -64,9 +64,9 @@
 
                 $backgroundColor = '';
                 if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
-                    $backgroundColor = 'background-color: #ffef9f; font-size: 36px;';
+                    break;
                 } elseif ($dateDifference > 0) {
-                    $backgroundColor = 'background-color: #C0F7A4; font-size: 36px;';
+                    break;
                 } else {
                     $backgroundColor = 'background-color: #FBC3BC; font-size: 36px;';
                 }
@@ -78,11 +78,6 @@
         }
 
         echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
-
-        if (isset($_SESSION['update_completed']) && $_SESSION['update_completed'] == true) {
-            echo "<script>alert('變更已完成');</script>";
-            unset($_SESSION['update_completed']);
-        }
 
         mysqli_close($link);
         ?>
