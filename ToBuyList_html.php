@@ -60,6 +60,7 @@
         ?>
     </table>
     <p style='#fff8dc;font-size: 36px'><br/> <br/><br/> </p>
+    <div class="top-button" onclick="scrollToTop()">TOP</div>
     <script src="Script.js"></script> <!-- 移动到页面底部 -->
 </body>
 </html>

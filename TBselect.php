@@ -55,6 +55,7 @@ foreach ($_SESSION['TBData'] as $buy) {
 ?>
 </table>
 <p style='#fff8dc;font-size: 36px'><br/> <br/><br/> </p>
+<div class="top-button" onclick="scrollToTop()">TOP</div>
 <script src="Script.js"></script>
 </body>
 </html>

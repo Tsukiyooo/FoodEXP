@@ -106,7 +106,7 @@
         mysqli_close($link);
         ?>
     </div>
-
+    <div class="top-button" onclick="scrollToTop()">TOP</div>
     <script src="Script.js"></script>
 </body>
 </html>

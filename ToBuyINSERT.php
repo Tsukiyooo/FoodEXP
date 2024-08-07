@@ -45,4 +45,3 @@ if (isset($_POST['ListName']) && isset($_POST['quantity']) && isset($_POST['rema
 ?>
 
 <script src="Script.js"></script>
-<script src="Script.js"></script>

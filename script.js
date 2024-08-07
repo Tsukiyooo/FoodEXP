@@ -215,7 +215,13 @@ document.addEventListener('DOMContentLoaded', function() {
       xhr.send(`kind=${encodeURIComponent(kind)}&sort=${encodeURIComponent(sort)}`);
   }
 });
-
+//TOP錨點
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
 
 
 

@@ -15,7 +15,6 @@
 <body>
     <div class="titArea">
         歷史紀錄
-        
     </div>
     <div class="expbtn">
             <select name="kind" id="kind" required style="font-size: large;">
@@ -85,7 +84,7 @@
         ?>
 
     </div>
-
+    <div class="top-button" onclick="scrollToTop()">TOP</div>
     <script src="Script.js"></script>
 </body>
 </html>
