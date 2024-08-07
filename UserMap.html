@@ -10,6 +10,9 @@
     <div class="titArea">
         推薦商家
     </div>
+    <div style="display: flex;">
+    <div id="map" style="width:100%; height: 80vh;"></div>
+    </div>
     <div class="button-container">
       <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
       <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>食品紀錄</button>
@@ -18,6 +21,33 @@
       <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
     </div>
 
+    
+    <script>
+    
+        let map;
+        let CurrentPosition;
+        function initMap(){
+            map = new google.maps.Map(document.getElementById('map'),{
+                center:{lat:23.553118,lng:121.0211024},
+                zoom:7,
+            });
+
+            navigator.geolocation.getCurrentPosition(function(position){
+                CurrentPosition ={
+                    lat:position.coords.latitude,
+                    lng:position.coords.longitude,
+                };
+
+                map.setCenter(CurrentPosition);
+                map.setZoom(16);
+            });
+        }
+
+        
+    </script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMQICim-gnQpKBmJ2efgSasEgBlpNqB7o&loading=async&libraries=places&callback=initMap">
+</script>
 <script src="Script.js"></script>
 </body>
 </html>

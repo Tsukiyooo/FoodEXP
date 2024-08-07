@@ -9,12 +9,15 @@
         .expired { background-color: #FBC3BC; }
         .soonToExpire { background-color: #ffef9f; font-size: 36px; }
         .notExpired { background-color:#C0F7A4; font-size: 36px; }
+        
     </style>
 </head>
 <body>
     <div class="titArea">
         歷史紀錄
-        <div class="Loubtn">
+        
+    </div>
+    <div class="expbtn">
             <select name="kind" id="kind" required style="font-size: large;">
                 <option value="" selected>分類</option>
                 <option value="meat">肉品類</option>
@@ -31,7 +34,6 @@
                 <option value="desc">有效日期由遠到近</option>
             </select>
         </div>
-    </div>
     <div class="button-container">
         <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
         <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>食品紀錄</button>

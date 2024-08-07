@@ -49,6 +49,12 @@ p {
   border-color: #f8dae2;
   color: black;
 }
+.expbtn{
+  margin-left:1px ;
+  background-color: #f8dae2;
+  display: flex;
+  justify-content: flex-end;
+}
 /* 底部固定按鈕布局 */
 .btn {
   padding: 10px 20px;
@@ -110,3 +116,4 @@ input[type="checkbox"] {
 .checked {
   background-color: #FBC3BC;
 }
+
