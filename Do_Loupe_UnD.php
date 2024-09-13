@@ -59,27 +59,37 @@ $allData = $_SESSION['AllData'];
         
                 // 計算日期差
                 $dateDifference = $expiryDate - $currentDate;
-        
+                $kindImage =  "pic/".$product['kind'] . ".png"; // 替換為你實際的圖片路徑
+
                 // 設定背景顏色樣式
                 $backgroundColor = '';
                 if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
                     // 在有效日期前三天（包括當日），黃色
-                    $backgroundColor = 'background-color: #ffef9f; font-size: 36px;';
+                    $backgroundColor = 'background-color: #ffef9f; font-size: 25px;border-radius: 20px;margin-top: 10px;';
                     $btnstyle='background-color: #ffef9f; font-size: 25px;box-shadow: 2px 2px 3px #888888; border: 2px solid #ffffff;';
                 } elseif ($dateDifference > 0) {
                     // 未到期，綠色
-                    $backgroundColor = 'background-color: #C0F7A4; font-size: 36px;';
+                    $backgroundColor = 'background-color: #C0F7A4; font-size: 25px;border-radius: 20px;margin-top: 10px;';
                     $btnstyle='background-color: #C0F7A4; font-size: 25px; box-shadow: 2px 2px 3px #888888; border: 2px solid #ffffff;';
                 } else {
                     // 過期，紅色
-                    $backgroundColor = 'background-color: #FBC3BC; font-size: 36px;';
+                    $backgroundColor = 'background-color: #FBC3BC; font-size: 25px;border-radius: 20px;margin-top: 10px;';
                     $btnstyle='background-color: #FBC3BC; font-size: 25px; box-shadow: 2px 2px 3px #888888; border: 2px solid #ffffff;';
                 }
         
                 // 顯示每個商品的品名和有效日期，帶有樣式
                 // echo "<p style='$backgroundColor'>品名：" . $product['name'] ."<button onclick='Delete()'>刪除</button>". "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
-                echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<button style='$btnstyle' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</button>"." "."<button style='$btnstyle' onclick=\"location.href='Ldelete.php?id=".$product['id']."'\" type='button'>刪除</button><br/> 有效日期：" . $product['date'] . "<br/> </p>";
-
+                // echo "<p style='$backgroundColor'>品名：" . $product['name'] ."　"."<button style='$btnstyle' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</button>"." "."<button style='$btnstyle' onclick=\"location.href='Ldelete.php?id=".$product['id']."'\" type='button'>刪除</button><br/> 有效日期：" . $product['date'] . "<br/> </p>";
+                echo "
+                <div style='$backgroundColor; display: flex; align-items: center; height: 120px;'>
+                    <div style='margin-right: 10px; height: 100%;'>
+                        <img src='$kindImage' alt='" . $product['kind'] . "' style='height: 100%;'>
+                    </div>
+                    <div>
+                        <p style='$backgroundColor;'>品名：" . $product['name'] ."　"."<button style='$btnstyle' onclick='Rewrite(\"".$product['id']."\",\"".$product['name']."\",\"".$product['date']."\")'>修改</button>"." "."<button style='$btnstyle' onclick=\"location.href='Ldelete.php?id=".$product['id']."'\" type='button'>刪除</button><br/> 有效日期：" . $product['date'] . "<br/> </p>
+                    </div>
+                </div>
+                ";
 
             }                          
     } else {

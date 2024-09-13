@@ -8,7 +8,7 @@
 body, h1, p {
   margin: 0;
   padding: 0;
-  background-color:#fff8dc;
+  background-color:#FFFCF9;
 }
 
 body {
@@ -24,6 +24,12 @@ p {
   font-size: 1.1vw; /* 使用相對大小（根據視窗寬度的百分比），1.1% 的視窗寬度 */
 }
 
+select {
+  border-radius: 10px; /* 設置圓角半徑 */
+  padding: 3px;        /* 增加內邊距，使內容更居中 */
+  border: 1px solid #ccc; /* 邊框樣式 */
+}
+
 /* 將預設要隱藏的行設置為 display: none; */
 .hidden-image {
   display: none;
@@ -36,7 +42,7 @@ p {
   align-items: center; /* 將內容垂直置中 */
   width: 100%;
   font-size: 56px;
-  background-color: #f8dae2;
+  background-color: #FFFCF9;
   position: fixed; /* 固定位置 */
   top: 0; /* 距離頂部 0 */
   left: 0; /* 距離左側 0 */
@@ -58,7 +64,7 @@ p {
 }
 .expbtn{
   margin-left:1px ;
-  background-color: #f8dae2;
+  background-color: #FFFCF9;
   display: flex;
   justify-content: flex-end;
 }
@@ -74,12 +80,14 @@ p {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #f8dae2; /* 設定背景顏色，可根據需要調整 */
+  background-color: #FFFCF9; /* 設定背景顏色，可根據需要調整 */
+  /* border-top:5px black solid; */
+  border:2px #FFCD29 solid;
   padding: 10px; /* 可調整底部容器的內邊距 */
   display: flex;
   justify-content: space-between;
   width: 100%;
-  /*box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);  可添加底部的陰影效果，根據需要調整 */
+  
 }
 
 /* Media query for smaller screens */
@@ -92,8 +100,8 @@ p {
   .btn {
   padding: 10px 5px;
   font-size: 16px;
-  background-color: #f8dae2;
-  border-color: #f8dae2;
+  background-color: #FFFCF9;
+  border-color: #FFFCF9;
   color: black;
   }
 }
@@ -104,7 +112,7 @@ p {
   justify-content: space-between; /* 在容器中的子元素之間平均分配空間，將按鈕放在兩端 */
   width: 97%;         /* 設置寬度為100%，使元素擴展到容器的寬度 */
   padding: 5px;       /* 可調整容器的內邊距 */
-  background-color: #fff8dc; /* 設定背景顏色，可根據需要調整 */
+  background-color: #FFFCF9; /* 設定背景顏色，可根據需要調整 */
 }
 
 .custom-button {
