@@ -1,4 +1,7 @@
 //檔案連接
+document.getElementById('btn0').addEventListener('click', function() {
+  window.location.href = 'main.html';
+});
 document.getElementById('btn1').addEventListener('click', function() {
     window.location.href = 'EnterPic_html.php';
   });

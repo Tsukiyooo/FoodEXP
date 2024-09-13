@@ -20,8 +20,9 @@
     
     </div>
     <div class="button-container">
-      <button class="btn" id="btn1"><img id="myImage" src="pic/camera.png"><br>拍攝照片</button>
-      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>手動輸入</button>
+    <button class="btn" id="btn0"><img id="myImage" src="pic/time.png"><br>首頁</button>
+    <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
+    <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>手動輸入</button>
       <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
       <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
       <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 

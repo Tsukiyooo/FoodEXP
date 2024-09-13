@@ -71,7 +71,7 @@ select {
 /* 底部固定按鈕布局 */
 .btn {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 /* Flexbox container for buttons */
@@ -99,7 +99,7 @@ select {
 
   .btn {
   padding: 10px 5px;
-  font-size: 16px;
+  font-size: 10px;
   background-color: #FFFCF9;
   border-color: #FFFCF9;
   color: black;
