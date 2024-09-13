@@ -58,8 +58,8 @@ select {
 .Loubtn button{
   padding: 10px 8px;
   font-size: 15px;
-  background-color: #f8dae2;
-  border-color: #f8dae2;
+  background-color: #FFFCF9;
+  border:2px #FFCD29 solid;
   color: black;
 }
 .expbtn{

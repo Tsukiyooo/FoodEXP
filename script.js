@@ -225,7 +225,19 @@ document.addEventListener('DOMContentLoaded', function() {
       behavior: 'smooth'
     });
   }
+//EnterTxt date
+var today = new Date();
+    
+// 格式化日期為 YYYY-MM-DD
+var day = String(today.getDate()).padStart(2, '0');
+var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+var year = today.getFullYear();
 
+// 將日期組合為 YYYY-MM-DD 格式
+var todayDate = year + '-' + month + '-' + day;
+
+// 設定 input 的預設值為今日日期
+document.getElementById('expiryDate').value = todayDate;
 
 
 
