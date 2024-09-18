@@ -58,26 +58,38 @@
         $_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         $allData = $_SESSION['AllData'];
+
         if (isset($_SESSION['AllData'])) {
             foreach ($_SESSION['AllData'] as $product) {
                 $expiryDate = strtotime(date('Y-m-d', strtotime($product['date'])));
                 $currentDate = strtotime(date('Y-m-d'));
                 $dateDifference = $expiryDate - $currentDate;
-
-                $backgroundColor = '';
+                $kindImage =  "pic/" . $product['kind'] . ".png"; // 替換為實際的圖片路徑
+                $class = '';
+        
                 if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
-                    break;
+                    $class = 'warning';
                 } elseif ($dateDifference > 0) {
-                    break;
+                    $class = 'safe';
                 } else {
-                    $backgroundColor = 'background-color: #FBC3BC; font-size: 36px;';
+                    $class = 'expired';
                 }
-
-                echo "<p style='$backgroundColor'>品名：" . $product['name'] . "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
-            }                          
+        
+                echo "
+                <div class='product-card $class'>
+                    <div class='product-image'>
+                        <img src='$kindImage' alt='". $product['kind']. "'>
+                    </div>
+                    <div class='product-info'>
+                        <p>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
+                    </div>
+                </div>
+                ";
+            }
         } else {
             echo "";
         }
+        
 
         echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
 

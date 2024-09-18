@@ -24,21 +24,31 @@ while ($product = mysqli_fetch_assoc($result)) {
     $expiryDate = strtotime($product['date']);
     $currentDate = strtotime(date('Y-m-d'));
     $dateDifference = $expiryDate - $currentDate;
-
-    $backgroundColor = '';
+    $kindImage =  "pic/".$product['kind'] . ".png"; // 替換為你實際的圖片路徑
+    $class = '';
     if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
         continue;
     } elseif ($dateDifference > 0) {
         continue;
     } else {
-        $backgroundColor = 'background-color: #FBC3BC; font-size: 36px;';
+        $class = 'expired';
     }
 
-    $response .= "<p style='$backgroundColor'>品名：" . htmlspecialchars($product['name']) . "<br/> 有效日期：" . htmlspecialchars($product['date']) . "<br/> </p>";
+    $response .= "
+     <div class='product-card $class'>
+                    <div class='product-image'>
+                        <img src='$kindImage' alt='". $product['kind']. "'>
+                    </div>
+                    <div class='product-info'>
+                        <p>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
+                    </div>
+                </div>
+    ";
+
 }
 
 echo $response;
-
+echo "<p style='#fff8dc;font-size: 36px'>"  . "<br/> <br/>". "<br/> </p>";
 mysqli_stmt_close($stmt);
 mysqli_close($link);
 ?>

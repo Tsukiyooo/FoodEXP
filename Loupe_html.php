@@ -81,29 +81,28 @@
                 $expiryDate = strtotime(date('Y-m-d', strtotime($product['date'])));
                 $currentDate = strtotime(date('Y-m-d'));
                 $dateDifference = $expiryDate - $currentDate;
-                $kindImage =  "pic/".$product['kind'] . ".png"; // 替換為你實際的圖片路徑
-                $backgroundColor = '';
+                $kindImage =  "pic/" . $product['kind'] . ".png"; // 替換為實際的圖片路徑
+                $class = '';
+        
                 if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
-                    $backgroundColor = 'background-color: #ffef9f; font-size: 25px;border-radius: 20px;margin-top: 10px;';
+                    $class = 'warning';
                 } elseif ($dateDifference > 0) {
-                    $backgroundColor = 'background-color: #C0F7A4; font-size: 25px;border-radius: 20px;margin-top: 10px;';
+                    $class = 'safe';
                 } else {
-                    $backgroundColor = 'background-color: #FBC3BC; font-size: 25px;border-radius: 20px;margin-top: 10px;';
+                    $class = 'expired';
                 }
-
-                // echo "<p style='$backgroundColor'><img src='$kindImage' alt='" . $product['kind'] . "' style='width:100px;height:100px;'> 品名：" . $product['name'] . "<br/> 有效日期：" . $product['date'] . "<br/> </p>";
-           
+        
                 echo "
-                <div style='$backgroundColor; display: flex; align-items: center; height: 120px;'>
-                    <div style='margin-right: 10px; height: 100%;'>
-                        <img src='$kindImage' alt='" . $product['kind'] . "' style='height: 100%;'>
+                <div class='product-card $class'>
+                    <div class='product-image'>
+                        <img src='$kindImage' alt='". $product['kind']. "'>
                     </div>
-                    <div>
-                        <p style='$backgroundColor;'>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
+                    <div class='product-info'>
+                        <p>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
                     </div>
                 </div>
                 ";
-            }                  
+            }
         } else {
             echo "";
         }

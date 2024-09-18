@@ -54,6 +54,10 @@ select {
 /* Loupe & ToBuyList 標題列設定 */
 .Loubtn{
   margin-left:1px ;
+  display: inline-block;
+  vertical-align: middle; /* 將按鈕與文本垂直對齊 */
+  margin-left: 10px; /* 與品名文字之間的距離 */
+  margin-top: -20px; /* 上移按鈕 */
 }
 .Loubtn button{
   padding: 10px 8px;
@@ -70,8 +74,9 @@ select {
 }
 /* 底部固定按鈕布局 */
 .btn {
-  padding: 10px 20px;
+  padding: 10px 10px;
   font-size: 12px;
+  margin: 10px;
 }
 
 /* Flexbox container for buttons */
@@ -83,9 +88,9 @@ select {
   background-color: #FFFCF9; /* 設定背景顏色，可根據需要調整 */
   /* border-top:5px black solid; */
   border:2px #FFCD29 solid;
-  padding: 10px; /* 可調整底部容器的內邊距 */
+  /* padding: 10px; 可調整底部容器的內邊距 */
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
   
 }
@@ -149,4 +154,145 @@ input[type="checkbox"] {
 
 .top-button:hover {
   background-color: #f5b7c0;
+}
+
+
+/* 通用樣式 */
+.product-card {
+  display: flex;
+  align-items: center;
+  height: 120px; /* 讓容器高度隨內容調整 */
+  border-radius: 20px;
+  margin-top: 10px;
+  background-color: inherit;
+  flex-direction: row; /* 確保圖片在文字的前面 */
+}
+
+.product-image {
+  margin-right: 10px; /* 圖片與文字之間的距離 */
+  height: 100%; /* 讓高度自適應 */
+  flex-shrink: 0; /* 確保圖片不會縮小 */
+}
+
+.product-image img {
+  height: 100%; /* 高度填滿容器 */
+  object-fit: cover; /* 確保圖片內容完全填滿容器 */
+}
+
+.product-info {
+  padding: 10px;
+  border-radius: 10px;
+
+}
+
+.product-info p {
+  font-size: 25px;
+  margin: 0;
+  background-color: inherit;
+}
+
+.button-c {
+  display: inline-block;
+  vertical-align: middle; /* 將按鈕與文本垂直對齊 */
+  margin-left: 10px; /* 與品名文字之間的距離 */
+  margin-top: -10px; /* 上移按鈕 */
+}
+
+.action-btn {
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px #888888;
+  border: 2px solid #ffffff;
+  background-color: inherit;
+}
+
+/* 確保圖片高度和背景高度一致 */
+.product-card {
+  align-items: stretch; /* 讓所有子元素高度一致 */
+}
+
+/* 狀態樣式 */
+.product-card.warning {
+  background-color: #ffef9f;
+}
+
+.product-card.safe {
+  background-color: #C0F7A4;
+}
+
+.product-card.expired {
+  background-color: #FBC3BC;
+}
+
+/* 小螢幕 RWD (手機) */
+@media (max-width: 600px) {
+  .product-card {
+    height: 100px; /* 小螢幕上的高度 */
+  }
+
+  .product-image {
+      width: 100px; /* 圖片在小螢幕上變小 */
+  }
+  
+  .product-info p {
+      font-size: 25px; /* 調整文字大小以適應小螢幕 */
+  }
+
+  .action-btn {
+    font-size: 18px; /* 調整按鈕文字大小 */
+  }
+
+  .titArea{
+    font-size: 50px;
+    }
+    .Loubtn{
+      margin-top: -10px; /* 上移按鈕 */
+    }
+  .Loubtn button{
+    padding: 8px 6px;
+    font-size: 14px;
+    background-color: #FFFCF9;
+    border:2px #FFCD29 solid;
+    color: black;
+  }
+}
+
+/* 中等螢幕 RWD (平板) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .product-card {
+    height: 110px; /* 小螢幕上的高度 */
+  }
+
+  .product-image {
+      width: 110px; /* 平板上的圖片尺寸 */
+  }
+  
+  .product-info p {
+      font-size: 30px;
+  }
+
+  .action-btn {
+    font-size: 20px; /* 調整按鈕文字大小 */
+  }
+}
+
+/* 大螢幕 RWD (桌面) */
+@media (min-width: 1025px) {
+  .product-card {
+    height: 120px; /* 小螢幕上的高度 */
+  }
+
+  .product-image {
+      width: 120px; /* 大螢幕圖片尺寸 */
+  }
+  
+  .product-info p {
+      font-size: 36px;
+  }
+
+  .action-btn {
+    font-size: 25px; /* 調整按鈕文字大小 */
+  }
 }

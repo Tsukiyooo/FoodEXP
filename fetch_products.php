@@ -25,23 +25,22 @@ while ($product = mysqli_fetch_assoc($result)) {
     $currentDate = strtotime(date('Y-m-d'));
     $dateDifference = $expiryDate - $currentDate;
     $kindImage =  "pic/".$product['kind'] . ".png"; // 替換為你實際的圖片路徑
-    $backgroundColor = '';
+    $class = '';
     if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
-        $backgroundColor = 'background-color: #ffef9f; font-size: 25px;border-radius: 20px;margin-top: 10px;';
-    } elseif ($dateDifference > 0) {
-        $backgroundColor = 'background-color: #C0F7A4; font-size: 25px;border-radius: 20px;margin-top: 10px;';
-    } else {
-        $backgroundColor = 'background-color: #FBC3BC; font-size: 25px;border-radius: 20px;margin-top: 10px;';
-    }
+        $class = 'warning';    } elseif ($dateDifference > 0) {
+            $class = 'safe';
+        } else {
+            $class = 'expired';
+        }
     $response .= "
-    <div style='$backgroundColor; display: flex; align-items: center; height: 120px;'>
-        <div style='margin-right: 10px; height: 100%;'>
-            <img src='$kindImage' alt='" . $product['kind'] . "' style='height: 100%;'>
-        </div>
-        <div>
-            <p style='$backgroundColor;'>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
-        </div>
-    </div>
+     <div class='product-card $class'>
+                    <div class='product-image'>
+                        <img src='$kindImage' alt='". $product['kind']. "'>
+                    </div>
+                    <div class='product-info'>
+                        <p>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
+                    </div>
+                </div>
     ";
     // $response .= "<p style='$backgroundColor'>品名：" . htmlspecialchars($product['name']) . "<br/> 有效日期：" . htmlspecialchars($product['date']) . "<br/> </p>";
 }
