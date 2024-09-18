@@ -36,7 +36,7 @@
         
     </div>
     <div class="expbtn">
-            <select name="kind" id="kind" required style="font-size: large;">
+            <select class="selectkind" name="kind" id="kind" required style="font-size: large;">
                 <option value="" selected>分類</option>
                 <option value="meat">肉品類</option>
                 <option value="seafood">海鮮類</option>
@@ -46,19 +46,19 @@
                 <option value="sauce">調味料</option>
                 <option value="other">其他</option>
             </select>
-            <select name="sort" id="sort" required style="font-size: large;">
+            <select class="selectkind" name="sort" id="sort" required style="font-size: large;">
                 <option value="" selected disabled>排序</option>
                 <option value="asc">有效日期由近到遠</option>
                 <option value="desc">有效日期由遠到近</option>
             </select>
         </div>
     <div class="button-container">
-    <button class="btn" id="btn0"><img id="myImage" src="pic/time.png"><br>首頁</button>
-        <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
-        <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>食品紀錄</button>
-        <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
-        <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
-        <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
+    <button class="btn" id="btn0">首頁</button>
+        <button class="btn" id="btn1"><span>歷史</span><span>紀錄</span></button>
+        <button class="btn" id="btn2"><span>食品</span><span>紀錄</span></button>
+        <button class="btn" id="btn3"><span>購物</span><span>清單</span></button>
+        <button class="btn" id="btn4"><span>即期</span><span>查詢</span></button>
+        <button class="btn" id="btn5"><span>推薦</span><span>商家</span></button> 
     </div>
     <div id="product-list">
         <!-- 產品列表將在這裡顯示 -->
@@ -98,7 +98,7 @@
                         <img src='$kindImage' alt='". $product['kind']. "'>
                     </div>
                     <div class='product-info'>
-                        <p>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
+                        <p>品名： <span class='Arial'>".$product['name']."</span></br>有效日期：<span class='Arial'>".$product['date'] ."</span></p>
                     </div>
                 </div>
                 ";

@@ -17,7 +17,7 @@
         歷史紀錄
     </div>
     <div class="expbtn">
-            <select name="kind" id="kind" required style="font-size: large;">
+            <select class="selectkind" name="kind" id="kind" required style="font-size: large;">
                 <option value="" selected>分類</option>
                 <option value="meat">肉品類</option>
                 <option value="seafood">海鮮類</option>
@@ -27,14 +27,14 @@
                 <option value="sauce">調味料</option>
                 <option value="other">其他</option>
             </select>
-            <select name="sort" id="sort" required style="font-size: large;">
+            <select class="selectkind" name="sort" id="sort" required style="font-size: large;">
                 <option value="" selected disabled>排序</option>
                 <option value="asc">有效日期由近到遠</option>
                 <option value="desc">有效日期由遠到近</option>
             </select>
         </div>
     <div class="button-container">
-        <button class="btn" id="btn0"><img id="myImage" src="pic/time.png"><br>首頁</button>
+        <button class="btn" id="btn0"><img id="myImage" src="pic/time.png"><br>首　　頁</button>
         <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
         <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>食品紀錄</button>
         <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
