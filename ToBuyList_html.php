@@ -20,19 +20,24 @@
     </div>
     </div>
     <div class="button-container">
-    <button class="btn" id="btn0"><img id="myImage" src="pic/time.png"><br>首　　頁</button>
-      <button class="btn" id="btn1"><img id="myImage" src="pic/time.png"><br>歷史紀錄</button>
-      <button class="btn" id="btn2"><img id="myImage" src="pic/edit.png"><br>食品紀錄</button>
-      <button class="btn" id="btn3"><img id="myImage" src="pic/list.png"><br>購物清單</button>
-      <button class="btn" id="btn4"><img id="myImage" src="pic/loupe.png"><br>即期查詢</button>
-      <button class="btn" id="btn5"><img id="myImage" src="pic/shop.png"><br>推薦商家</button> 
+        <button class="btn" id="btn0">首頁</button>
+        <button class="btn" id="btn1"><span>歷史</span><span>紀錄</span></button>
+        <button class="btn" id="btn2"><span>食品</span><span>紀錄</span></button>
+        <button class="btn" id="btn3"><span>購物</span><span>清單</span></button>
+        <button class="btn" id="btn4"><span>即期</span><span>查詢</span></button>
+        <button class="btn" id="btn5"><span>推薦</span><span>商家</span></button> 
     </div>
     <table border="1">
         <?php
         require_once 'db_con.php';
-        echo "<tr align=center><td> 檢核 </td><td colspan='5'>品名</td><td colspan='3'>數量</td><td colspan='5'>備註</td><td>修改</td><td>刪除</td></tr>";
-
-        session_start();
+        echo "<tr align='center'>
+        <td class='checkbox-cell'>檢核</td>
+        <td class='table-cell name'>品名</td>
+        <td class='table-cell quantity'>數量</td>
+        <td class='table-cell remark'>備註</td>
+        <td class='action'>修改</td>
+        <td class='action'>刪除</td>
+      </tr>";
         if (!isset($_SESSION['ListData'])) {
             $_SESSION['ListData'] = array();
         }
@@ -43,12 +48,15 @@
         $listData = $_SESSION['ListData'];
         if (isset($_SESSION['ListData'])) {
             foreach ($_SESSION['ListData'] as $buy) {
-                echo "<tr align=center><td><input type='checkbox' class='myCheckbox' data-id='" . $buy['id'] . "' onchange='changeRowColor(this)'></td>";
-                echo "<td colspan='5' style='font-size: 30px;'>" . $buy['name'] . "</td>";
-                echo "<td colspan='3' style='font-size: 30px;'>" . $buy['quantity'] . "</td>";
-                echo "<td colspan='5' style='font-size: 30px;'>" . $buy['remark'] . "</td>";
-                echo "<td><button style='font-size: 20px;background-color: #fff8dc;box-shadow: 2px 2px 3px #888888; border: 1px solid #ffffff;' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</button></td>";
-                echo "<td><button style='font-size: 20px;background-color: #fff8dc;box-shadow: 2px 2px 3px #888888; border: 1px solid #ffffff;' onclick=\"location.href='TBdelete.php?id=" . $buy['id'] . "'\">刪除</button></td></tr>";
+                echo "<tr align=center>
+        <td><input type='checkbox' class='myCheckbox' data-id='" . $buy['id'] . "' onchange='changeRowColor(this)'></td>
+        <td class='table-cell name'>" . $buy['name'] . "</td>
+        <td class='table-cell quantity'>" . $buy['quantity'] . "</td>
+        <td class='table-cell remark'>" . $buy['remark'] . "</td>
+        <td><button class='action-listbtn' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</button></td>
+        <td><button class='action-listbtn' onclick=\"location.href='TBdelete.php?id=" . $buy['id'] . "'\">刪除</button></td>
+      </tr>";
+
             }
         } else {
             echo "";

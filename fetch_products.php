@@ -38,7 +38,7 @@ while ($product = mysqli_fetch_assoc($result)) {
                         <img src='$kindImage' alt='". $product['kind']. "'>
                     </div>
                     <div class='product-info'>
-                        <p>品名：" . $product['name'] . "</br>有效日期：" . $product['date'] . "</p>
+                        <p>品名：<span class='Arial'>" . $product['name'] . "</span></br>有效日期：<span class='Arial'>" . $product['date'] . "</span></p>
                     </div>
                 </div>
     ";

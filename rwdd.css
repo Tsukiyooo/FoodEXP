@@ -24,6 +24,21 @@ p {
   font-size: 1.1vw; /* 使用相對大小（根據視窗寬度的百分比），1.1% 的視窗寬度 */
 }
 
+td, th {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle; /* 讓內容在單元格內垂直置中 */
+  font-size: 1.2rem;
+  word-wrap: break-word; /* 確保長內容換行 */
+}
+
+td.checkbox-cell, th.checkbox-cell {
+  width: 10%;
+  min-width: 40px; /* 最小寬度 */
+  max-width: 50px; /* 最大寬度防止擠出格子 */
+}
+
+
 select {
   border-radius: 10px; /* 設置圓角半徑 */
   padding: 3px;        /* 增加內邊距，使內容更居中 */
@@ -251,6 +266,7 @@ input[type="checkbox"] {
   display: flex;
   justify-content: center;
   align-items: center; /* 讓文字或圖標在圓形內居中 */
+  opacity: 0.8; /* 設置透明度 */
 }
 
 .top-button:hover {
@@ -309,6 +325,22 @@ input[type="checkbox"] {
   background-color: inherit;
 }
 
+.action-listbtn {
+  padding: 10px 15px;
+  font-size: 1.2rem; /* 使用相對單位，便於響應式縮放 */
+  background-color: #fff8dc;
+  box-shadow: 2px 2px 3px #888888;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* 添加過渡效果 */
+}
+
+.action-listbtn:hover {
+  background-color: #ffe4b5; /* 鼠標懸停時改變背景色 */
+  transform: scale(1.05); /* 稍微放大按鈕 */
+}
+
+
 /* 確保圖片高度和背景高度一致 */
 .product-card {
   align-items: stretch; /* 讓所有子元素高度一致 */
@@ -325,6 +357,33 @@ input[type="checkbox"] {
 
 .product-card.expired {
   background-color: #FBC3BC;
+}
+table {
+  width: 100%; /* 讓表格寬度佔滿 100% */
+  border-collapse: collapse; /* 去除邊框間隙 */
+  table-layout: fixed;; /* 固定表格佈局，讓欄位均勻分配寬度 */
+}
+
+td.name, th.name {
+  width: 20%;
+}
+
+td.quantity, th.quantity {
+  width: 20%;
+}
+
+td.remark, th.remark {
+  width: 30%;
+}
+
+td.action, th.action {
+  width: 10%;
+}
+
+.myCheckbox {
+  transform: scale(1.2); /* 初始放大比例 */
+  margin: 0 auto; /* 水平置中 */
+    display: block;
 }
 
 /* 小螢幕 RWD (手機) */
@@ -345,6 +404,14 @@ input[type="checkbox"] {
     font-size: 18px; /* 調整按鈕文字大小 */
   }
 
+  td {
+    font-size: 0.9rem; /* 手機上字體進一步縮小 */
+}
+.action-listbtn {
+    padding: 1px 5px; /* 手機上按鈕更小 */
+    font-size: 0.8rem; /* 手機上按鈕字體更小 */
+}
+
   .titArea{
     font-size: 50px;
     }
@@ -358,6 +425,11 @@ input[type="checkbox"] {
     border:2px #FFCD29 solid;
     color: black;
   }
+
+  .myCheckbox {
+    transform: scale(0.8); /* 手機上縮小 */
+}
+
 }
 
 /* 中等螢幕 RWD (平板) */
@@ -377,6 +449,18 @@ input[type="checkbox"] {
   .action-btn {
     font-size: 20px; /* 調整按鈕文字大小 */
   }
+
+  td {
+    font-size: 1rem; /* 平板上字體縮小 */
+}
+.action-listbtn {
+    padding: 5px 10px; /* 平板上按鈕縮小 */
+    font-size: 0.9rem; /* 按鈕字體縮小 */
+}
+
+.myCheckbox {
+  transform: scale(0.8); /* 手機上縮小到 0.8 倍 */
+}
 }
 
 /* 大螢幕 RWD (桌面) */

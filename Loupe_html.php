@@ -53,7 +53,7 @@
             </select>
         </div>
     <div class="button-container">
-    <button class="btn" id="btn0">首頁</button>
+        <button class="btn" id="btn0">首頁</button>
         <button class="btn" id="btn1"><span>歷史</span><span>紀錄</span></button>
         <button class="btn" id="btn2"><span>食品</span><span>紀錄</span></button>
         <button class="btn" id="btn3"><span>購物</span><span>清單</span></button>
