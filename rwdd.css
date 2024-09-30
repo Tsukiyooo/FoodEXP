@@ -134,6 +134,17 @@ select {
 
 }
 
+.nav-box{
+  display: flex;
+  justify-content:flex-start; /* 將內容水平置中 */
+  align-items: flex-start; /* 將內容垂直置中 */
+  width: 12px;
+  position: fixed; /* 固定位置 */
+  top: 0; /* 距離頂部 0 */
+  left: 0; /* 距離左側 0 */
+  z-index: 2000; /* 確保在其他元素之上 */
+}
+
 /* Loupe & ToBuyList 標題列設定 */
 .Loubtn{
   margin-left:1px ;
@@ -178,6 +189,108 @@ select {
 }
 
 
+/*
+選單線
+*/
+.line {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+  position: fixed;
+  z-index: 2;
+}
+.line .menu,
+.line .menu::before,
+.line .menu::after {
+  background: #222;
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  transition: background ease 0.15s, top ease 0.15s 0.15s, transform ease 0.15s;
+  width: 20px;
+}
+.line .menu {
+  left: 18px;
+  top: 27px;
+}
+
+.line .menu::before {
+  top: -6px;
+}
+
+.line .menu::after {
+  top: 6px;
+}
+/*
+點選選單變叉叉
+*/
+#menu:checked + .line .menu {
+  background: transparent;
+}
+
+#menu:checked + .line .menu::before {
+  transform: rotate(45deg);
+}
+
+#menu:checked + .line .menu::after {
+  transform: rotate(-45deg);
+}
+
+#menu:checked + .line .menu::before,
+#menu:checked + .line .menu::after {
+  top: 0;
+  transition: top ease 0.15s, transform ease 0.15s 0.15s;
+}
+
+/*
+選單開合
+*/
+#menu:checked ~ .menu-list {
+  width: 50%;
+  height: 100vh;
+}
+
+.menu-list {
+  width: 60px;
+  height: 0;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-top: 60px;
+  position: fixed;
+  z-index: 1;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+/*
+選單向外推
+*/
+.menu-list ul {
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+}
+
+.menu-list ul :hover {
+  background-color: #FCD19C; /* 滑鼠懸停時的背景顏色 */
+  border-color: #f69722; /* 滑鼠懸停時的邊框顏色 */
+}
+
+.menu-list ul > li {
+  display: block;
+  padding: 20px;
+  width: 100%;
+}
+/*
+隱藏核許框
+*/
+input#menu {
+  display: none;
+}
+
 /* Flexbox container for buttons */
 .button-container {
   position: fixed;
@@ -194,8 +307,15 @@ select {
   
 }
 
+
+
 /* Media query for smaller screens */
 @media screen and (max-width: 800px) {
+
+  .nav-box{
+    display: none;
+  }
+
   .button-container {
     display: flex;
     justify-content: space-around;
@@ -325,19 +445,57 @@ input[type="checkbox"] {
   background-color: inherit;
 }
 
+/* 更多按鈕的樣式 */
 .action-listbtn {
+  float: right; /* 將按鈕對齊到右側 */
   padding: 10px 15px;
-  font-size: 1.2rem; /* 使用相對單位，便於響應式縮放 */
-  background-color: #fff8dc;
-  box-shadow: 2px 2px 3px #888888;
-  border: 1px solid #ffffff;
+  background-color: transparent; /* 設定背景為透明 */
+  box-shadow: none;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease; /* 添加過渡效果 */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  
 }
 
-.action-listbtn:hover {
-  background-color: #ffe4b5; /* 鼠標懸停時改變背景色 */
-  transform: scale(1.05); /* 稍微放大按鈕 */
+.action-listbtn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* 下拉選單容器 */
+.action-menu {
+  position: relative;
+  display: inline-block;
+}
+
+/* 選項的樣式 */
+.menu-options {
+  position: absolute;
+  top: 20px; /* 根據需要調整選單的垂直距離 */
+  left: -30px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 60px; /* 固定寬度 */
+}
+
+.menu-options button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.menu-options button:last-child {
+  border-bottom: none; /* 移除最後一個選項的下邊框 */
+}
+
+.menu-options button:hover {
+  background-color: #f0f0f0;
 }
 
 
@@ -361,7 +519,7 @@ input[type="checkbox"] {
 table {
   width: 100%; /* 讓表格寬度佔滿 100% */
   border-collapse: collapse; /* 去除邊框間隙 */
-  table-layout: fixed;; /* 固定表格佈局，讓欄位均勻分配寬度 */
+  table-layout: fixed; /* 固定表格佈局，讓欄位均勻分配寬度 */
 }
 
 td.name, th.name {
@@ -388,6 +546,10 @@ td.action, th.action {
 
 /* 小螢幕 RWD (手機) */
 @media (max-width: 600px) {
+  .nav-box{
+    display: none;
+  }
+
   .product-card {
     height: 100px; /* 小螢幕上的高度 */
   }
@@ -434,6 +596,10 @@ td.action, th.action {
 
 /* 中等螢幕 RWD (平板) */
 @media (min-width: 601px) and (max-width: 1024px) {
+  .nav-box{
+    display: none;
+  }
+
   .product-card {
     height: 110px; /* 小螢幕上的高度 */
   }
@@ -465,6 +631,10 @@ td.action, th.action {
 
 /* 大螢幕 RWD (桌面) */
 @media (min-width: 1025px) {
+.button-container{
+  display: none;
+}
+
   .product-card {
     height: 120px; /* 小螢幕上的高度 */
   }

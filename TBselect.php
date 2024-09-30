@@ -7,6 +7,23 @@
     <title>購物清單</title>
 </head>
 <body>
+<nav class="nav-box">
+  <input type="checkbox" id="menu">
+  <label for="menu" class="line">
+    <div class="menu"></div>
+  </label>
+
+  <div class="menu-list">
+    <ul>
+      <li id="bt0">首頁</li>
+      <li id="bt1">歷史紀錄</li>
+      <li id="bt2">食品紀錄</li>
+      <li id="bt3">購物清單</li>
+      <li id="bt4">即期查詢</li>
+      <li id="bt5">推薦商家</li>
+    </ul>
+  </div>
+</nav>
     <div class="titArea">
         購物清單
         

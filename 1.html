@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="rwdd.css">
+  <div class="menu-container">
+    <button id="menuButton">．．．</button>
+    <div id="menuOptions" class="menu-options" style="display: none;">
+      <button id="editOption" class="menu-item">修改</button>
+      <button id="deleteOption" class="menu-item">刪除</button>
+    </div>
+  </div>
+  
+  <script>
+  document.getElementById("menuButton").addEventListener("click", function() {
+  var menuOptions = document.getElementById("menuOptions");
+  if (menuOptions.style.display === "none") {
+    menuOptions.style.display = "block";
+  } else {
+    menuOptions.style.display = "none";
+  }
+});
+
+// 點擊其他區域時隱藏選單
+window.addEventListener("click", function(event) {
+  var menuOptions = document.getElementById("menuOptions");
+  if (!event.target.closest('.menu-container')) {
+    menuOptions.style.display = "none";
+  }
+});
+
+
+</script>
+
+</body>
+</html>

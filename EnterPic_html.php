@@ -9,11 +9,28 @@
         .expired { background-color: #FBC3BC; }
         .soonToExpire { background-color: #ffef9f; font-size: 36px; }
         .notExpired { background-color:#C0F7A4; font-size: 36px; }
-        
     </style>
 </head>
 <body>
+<nav class="nav-box">
+  <input type="checkbox" id="menu">
+  <label for="menu" class="line">
+    <div class="menu"></div>
+  </label>
+
+  <div class="menu-list">
+    <ul>
+      <li id="bt0">首頁</li>
+      <li id="bt1">歷史紀錄</li>
+      <li id="bt2">食品紀錄</li>
+      <li id="bt3">購物清單</li>
+      <li id="bt4">即期查詢</li>
+      <li id="bt5">推薦商家</li>
+    </ul>
+  </div>
+</nav>
     <div class="titArea">
+   
         歷史紀錄
     </div>
     <div class="expbtn">
@@ -33,6 +50,7 @@
                 <option value="desc">有效日期由遠到近</option>
             </select>
         </div>
+
         <div class="button-container">
         <button class="btn" id="btn0">首頁</button>
         <button class="btn" id="btn1"><span>歷史</span><span>紀錄</span></button>
@@ -40,6 +58,7 @@
         <button class="btn" id="btn3"><span>購物</span><span>清單</span></button>
         <button class="btn" id="btn4"><span>即期</span><span>查詢</span></button>
         <button class="btn" id="btn5"><span>推薦</span><span>商家</span></button> 
+    </div>
     </div>
 
     <div id="ex-product-list">

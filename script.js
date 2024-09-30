@@ -19,6 +19,25 @@ document.getElementById('btn1').addEventListener('click', function() {
   });
 
 
+  document.getElementById('bt0').addEventListener('click', function() {
+    window.location.href = 'main.html';
+  });
+  document.getElementById('bt1').addEventListener('click', function() {
+      window.location.href = 'EnterPic_html.php';
+    });
+    document.getElementById('bt2').addEventListener('click', function() {
+      window.location.href = 'EnterTxt.html';
+    });
+    document.getElementById('bt3').addEventListener('click', function() {
+      window.location.href = 'ToBuyList_html.php';
+    });
+    document.getElementById('bt4').addEventListener('click', function() {
+      window.location.href = 'Loupe_html.php';
+    });
+    document.getElementById('bt5').addEventListener('click', function() {
+      window.location.href = 'UserMap.html';
+    });
+
 //EnterPic
 function displaySelectedImage(input) {
     var previewImage = document.getElementById('previewImage');
@@ -240,6 +259,25 @@ var todayDate = year + '-' + month + '-' + day;
 document.getElementById('expiryDate').value = todayDate;
 
 
+//ToBuyList-more
+function toggleMenu(button) {
+  var menuOptions = button.nextElementSibling; // 選擇後面的選單
+  if (menuOptions.style.display === "none" || menuOptions.style.display === "") {
+    menuOptions.style.display = "block"; // 顯示選單
+  } else {
+    menuOptions.style.display = "none"; // 隱藏選單
+  }
+}
+
+// 點擊頁面其他部分時隱藏選單
+window.addEventListener("click", function(event) {
+  var menus = document.querySelectorAll('.menu-options');
+  menus.forEach(function(menu) {
+    if (!event.target.closest('.action-menu')) {
+      menu.style.display = "none"; // 點擊其他區域時隱藏所有選單
+    }
+  });
+});
 
 
 

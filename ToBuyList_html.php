@@ -8,6 +8,23 @@
 
 </head>
 <body>
+<nav class="nav-box">
+  <input type="checkbox" id="menu">
+  <label for="menu" class="line">
+    <div class="menu"></div>
+  </label>
+
+  <div class="menu-list">
+    <ul>
+      <li id="bt0">首頁</li>
+      <li id="bt1">歷史紀錄</li>
+      <li id="bt2">食品紀錄</li>
+      <li id="bt3">購物清單</li>
+      <li id="bt4">即期查詢</li>
+      <li id="bt5">推薦商家</li>
+    </ul>
+  </div>
+</nav>
     <div class="titArea">
         購物清單
         <div class="Loubtn">
@@ -27,7 +44,7 @@
         <button class="btn" id="btn4"><span>即期</span><span>查詢</span></button>
         <button class="btn" id="btn5"><span>推薦</span><span>商家</span></button> 
     </div>
-    <table border="1">
+    <table border="0">
         <?php
         require_once 'db_con.php';
         echo "<tr align='center'>
@@ -35,8 +52,7 @@
         <td class='table-cell name'>品名</td>
         <td class='table-cell quantity'>數量</td>
         <td class='table-cell remark'>備註</td>
-        <td class='action'>修改</td>
-        <td class='action'>刪除</td>
+        <td class='action'></td>
       </tr>";
         if (!isset($_SESSION['ListData'])) {
             $_SESSION['ListData'] = array();
@@ -48,14 +64,27 @@
         $listData = $_SESSION['ListData'];
         if (isset($_SESSION['ListData'])) {
             foreach ($_SESSION['ListData'] as $buy) {
-                echo "<tr align=center>
-        <td><input type='checkbox' class='myCheckbox' data-id='" . $buy['id'] . "' onchange='changeRowColor(this)'></td>
-        <td class='table-cell name'>" . $buy['name'] . "</td>
-        <td class='table-cell quantity'>" . $buy['quantity'] . "</td>
-        <td class='table-cell remark'>" . $buy['remark'] . "</td>
-        <td><button class='action-listbtn' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</button></td>
-        <td><button class='action-listbtn' onclick=\"location.href='TBdelete.php?id=" . $buy['id'] . "'\">刪除</button></td>
-      </tr>";
+                echo "
+<tr align=center>
+  <td><input type='checkbox' class='myCheckbox' data-id='" . $buy['id'] . "' onchange='changeRowColor(this)'></td>
+  <td class='table-cell name'>" . $buy['name'] . "</td>
+  <td class='table-cell quantity'>" . $buy['quantity'] . "</td>
+  <td class='table-cell remark'>" . $buy['remark'] . "</td>
+  <td>
+    <div class='action-menu'>
+      <button class='action-listbtn' onclick='toggleMenu(this)'>
+        <img src='pic/more.png' alt='更多'>
+      </button>
+      <div class='menu-options' style='display: none;'>
+        <button class='edit-option' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</button>
+        <button class='delete-option' onclick=\"location.href='TBdelete.php?id=" . $buy['id'] . "'\">刪除</button>
+      </div>
+    </div>
+  </td>
+</tr>";
+    //   <td><button class='action-listbtn' onclick='TBRewrite(\"" . $buy['id'] . "\",\"" . $buy['name'] . "\",\"" . $buy['quantity'] . "\",\"" . $buy['remark'] . "\")'>修改</button></td>
+
+    //   <td><button class='action-listbtn' onclick=\"location.href='TBdelete.php?id=" . $buy['id'] . "'\">刪除</button></td>
 
             }
         } else {
