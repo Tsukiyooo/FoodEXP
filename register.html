@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rwdd.css">
+    <title>register</title>
+</head>
+<body>
+    <div class="titArea">
+        註冊
+    </div>
+    <form action="register.php" method="post" name="productForm" id="productForm">
+        <br>
+        <div class="profile-upload">
+                <img id="profileImage" src="pic/user.png" alt="icon" class="profile-icon" />
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" />
+        </div>
+        <br>
+        <div class="input-container">
+            <img src="pic/user.png" alt="icon" class="input-icon" />
+            <input class="registerbox" id="user" name="user" type="text" placeholder="用戶名稱" required />
+        </div>
+        <br>
+        <br>
+        <div class="input-container">
+            <img src="pic/padlock.png" alt="icon" class="input-icon" />
+            <input class="registerbox" id="pass" name="pass" type="text" placeholder="密碼" required />
+        </div>
+        <br>
+        <br>
+        <div class="input-container">
+            <img src="pic/mail.png" alt="icon" class="input-icon" />
+            <input class="registerbox" id="mail" name="mail" type="text" placeholder="密碼" required />
+        </div>
+        <br>
+        <br>
+        <div class="button-con">
+            <input type="reset" name="reset" id="reset" class="custom-button" value="重製">
+            <input type="submit" name="submit" id="submit" class="custom-button" value="確定">
+        </div>
+    </form>
+<script src="Script.js"></script>
+</body>
+</html>

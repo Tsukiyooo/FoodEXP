@@ -34,21 +34,6 @@
         <div class="Loubtn">
             <button id="Search" onclick="ToSearch()">找尋商品</button>
             <button id="RewriteDate" onclick="ToDo()">改寫資料</button>
-            <!-- <select name="kind" id="kind" required style="font-size: large;">
-                <option value="" selected>分類</option>
-                <option value="meat">肉品類</option>
-                <option value="seafood">海鮮類</option>
-                <option value="vegetable">蔬菜類</option>
-                <option value="fruit">水果類</option>
-                <option value="drinks">飲品類</option>
-                <option value="sauce">調味料</option>
-                <option value="other">其他</option>
-            </select>
-            <select name="sort" id="sort" required style="font-size: large;">
-                <option value="" selected disabled>排序</option>
-                <option value="asc">有效日期由近到遠</option>
-                <option value="desc">有效日期由遠到近</option>
-            </select> -->
         </div>
         
     </div>

@@ -57,6 +57,48 @@ select {
   
 }
 
+.profile-upload {
+  display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+}
+
+.profile-icon {
+  cursor: pointer; /* 鼠標變成手形，表示可點擊 */
+  width: 100px; /* 設定圖片寬度 */
+  height: 100px; /* 設定圖片高度 */
+  border-radius: 50%; /* 使圖片變成圓形 */
+  object-fit: cover; /* 確保圖片以適當比例顯示 */
+  
+}
+
+/* 定義容器的樣式 */
+.input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+/* 定義圖標的樣式 */
+.input-icon {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+/* 定義輸入框的樣式 */
+.registerbox {
+  font-size: large;
+  padding-left: 40px; /* 給輸入框留出圖標的空間 */
+  height: 50px;
+  width: 85%; /* 根據需求設置寬度 */
+}
+
+
 .Arial{
   font-family:Arial;
   font-weight: 650;

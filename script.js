@@ -279,6 +279,30 @@ window.addEventListener("click", function(event) {
   });
 });
 
+// 確保腳本在 DOM 加載後執行
+document.addEventListener("DOMContentLoaded", function() {
+  // 獲取圖片和文件輸入框元素
+  const profileImage = document.getElementById("profileImage");
+  const fileInput = document.getElementById("fileInput");
+
+  // 點擊圖片時觸發文件選擇
+  profileImage.addEventListener("click", function() {
+      fileInput.click();
+  });
+
+  // 當文件選擇完成後，顯示選擇的圖片
+  fileInput.addEventListener("change", function() {
+      const file = fileInput.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              profileImage.src = e.target.result; // 更新圖片為選擇的頭貼
+          };
+          reader.readAsDataURL(file);
+      }
+  });
+});
+
 
 
 
