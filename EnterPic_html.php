@@ -30,7 +30,6 @@
   </div>
 </nav>
     <div class="titArea">
-   
         歷史紀錄
     </div>
     <div class="expbtn">

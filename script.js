@@ -1,6 +1,6 @@
 //檔案連接
 document.getElementById('btn0').addEventListener('click', function() {
-  window.location.href = 'main.html';
+  window.location.href = 'main.php';
 });
 document.getElementById('btn1').addEventListener('click', function() {
     window.location.href = 'EnterPic_html.php';
@@ -37,39 +37,6 @@ document.getElementById('btn1').addEventListener('click', function() {
     document.getElementById('bt5').addEventListener('click', function() {
       window.location.href = 'UserMap.html';
     });
-
-//EnterPic
-function displaySelectedImage(input) {
-    var previewImage = document.getElementById('previewImage');
-  
-    // 檢查是否有選擇的文件
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-  
-      reader.onload = function (e) {
-        // 更新預覽圖片的 src
-        previewImage.src = e.target.result;
-        // 顯示預覽圖片
-        previewImage.style.display = 'block';
-      };
-  
-      // 讀取文件內容
-      reader.readAsDataURL(input.files[0]);
-    } else {
-      // 如果沒有選擇文件，隱藏預覽圖片
-      previewImage.style.display = 'none';
-    }
-  }
-        function PicresetForm() {
-            // 重置表單（這部分的具體實現可能還需根據你的需求進行調整）
-            document.getElementById('photoForm').reset();
-            // 隱藏預覽圖片
-            document.getElementById('previewImage').style.display = 'none';
-          }
-          function PicconfirmForm() {
-            // 在這裡添加確認表單的操作，根據你的需求進行實現
-            alert('表單已確認');
-          }
 
 // EnterTxt
 function TxtresetForm() {
@@ -279,29 +246,6 @@ window.addEventListener("click", function(event) {
   });
 });
 
-// 確保腳本在 DOM 加載後執行
-document.addEventListener("DOMContentLoaded", function() {
-  // 獲取圖片和文件輸入框元素
-  const profileImage = document.getElementById("profileImage");
-  const fileInput = document.getElementById("fileInput");
-
-  // 點擊圖片時觸發文件選擇
-  profileImage.addEventListener("click", function() {
-      fileInput.click();
-  });
-
-  // 當文件選擇完成後，顯示選擇的圖片
-  fileInput.addEventListener("change", function() {
-      const file = fileInput.files[0];
-      if (file) {
-          const reader = new FileReader();
-          reader.onload = function(e) {
-              profileImage.src = e.target.result; // 更新圖片為選擇的頭貼
-          };
-          reader.readAsDataURL(file);
-      }
-  });
-});
 
 
 

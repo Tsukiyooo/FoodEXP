@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="rwdd.css">
-    <title>register</title>
+    <title>Login</title>
 </head>
 <body>
-    <script src="Script.js"></script>
     <div class="titArea">
-        註冊
+        登入
     </div>
-    <form action="register.php" method="post" name="productForm" id="productForm">
+    <form action="Login.php" method="post" name="productForm" id="productForm">
         <br>
         <div class="profile-upload">
-            <img id="profileImage" src="pic/user.png" alt="icon" class="profile-icon" />
-            <input type="file" id="fileInput" accept="image/*" style="display: none;" />
+                <img id="profileImage" src="pic/user.png" alt="icon" class="profile-icon" />
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" />
         </div>
         <br>
         <div class="input-container">
@@ -30,17 +29,12 @@
         </div>
         <br>
         <br>
-        <div class="input-container">
-            <img src="pic/mail.png" alt="icon" class="input-icon" />
-            <input class="registerbox" id="email" name="email" type="text" placeholder="電子信箱" required />
-        </div>
-        <br>
-        <br>
+        <a href="">忘記密碼？</a>
         <div class="button-con">
-            <input type="button" name="register" id="register" class="custom-button" value="回登入頁" onclick="window.location.href='login.html'" />
-            <input type="submit" name="submit" id="submit" class="custom-button" value="註冊">
+            <input type="button" name="register" id="register" class="custom-button" value="建立新帳號" onclick="location.href='register.html'" />
+            <input type="submit" name="submit" id="submit" class="custom-button" value="登入">
         </div>
     </form>
-
+<script src="Script.js"></script>
 </body>
 </html>

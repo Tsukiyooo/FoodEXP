@@ -38,6 +38,10 @@ td.checkbox-cell, th.checkbox-cell {
   max-width: 50px; /* 最大寬度防止擠出格子 */
 }
 
+a {
+  padding: 5%;
+  font-size: 90%;
+}
 
 select {
   border-radius: 10px; /* 設置圓角半徑 */
@@ -61,6 +65,8 @@ select {
   display: flex;
     justify-content: center; /* 水平居中 */
     align-items: center;     /* 垂直居中 */
+    position: relative;
+    cursor: pointer;
 }
 
 .profile-icon {
@@ -71,6 +77,7 @@ select {
   object-fit: cover; /* 確保圖片以適當比例顯示 */
   
 }
+
 
 /* 定義容器的樣式 */
 .input-container {
@@ -586,6 +593,32 @@ td.action, th.action {
     display: block;
 }
 
+/* 定義容器的樣式 */
+.input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+/* 定義圖標的樣式 */
+.input-icon {
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+/* 定義輸入框的樣式 */
+.registerbox {
+  font-size: large;
+  padding-left: 40px; /* 給輸入框留出圖標的空間 */
+  height: 50px;
+  width: 85%; /* 根據需求設置寬度 */
+}
+
 /* 小螢幕 RWD (手機) */
 @media (max-width: 600px) {
   .nav-box{
@@ -633,7 +666,6 @@ td.action, th.action {
   .myCheckbox {
     transform: scale(0.8); /* 手機上縮小 */
 }
-
 }
 
 /* 中等螢幕 RWD (平板) */
@@ -692,4 +724,29 @@ td.action, th.action {
   .action-btn {
     font-size: 25px; /* 調整按鈕文字大小 */
   }
+  /* 定義容器的樣式 */
+.input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+/* 定義圖標的樣式 */
+.input-icon {
+  position: absolute;
+  left: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+/* 定義輸入框的樣式 */
+.registerbox {
+  font-size: large;
+  padding-left: 40px; /* 給輸入框留出圖標的空間 */
+  height: 50px;
+  width: 90%; /* 根據需求設置寬度 */
+}
 }

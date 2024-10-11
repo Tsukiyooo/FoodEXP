@@ -8,6 +8,14 @@
            <?php
             require_once 'db_con.php';
            session_start();
+
+           if (!isset($_SESSION['user'])) {
+               echo "<script>
+                       alert('請先登入');
+                       window.location.href = 'Login.html';
+                     </script>";
+               exit();
+           }
            if (!isset($_SESSION['AllData'])) {
             $_SESSION['AllData'] = array();
         }

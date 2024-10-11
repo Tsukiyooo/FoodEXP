@@ -35,7 +35,13 @@ require_once 'db_con.php';
 
 // 開啟 session
 session_start();
-
+if (!isset($_SESSION['user'])) {
+    echo "<script>
+            alert('請先登入');
+            window.location.href = 'Login.html';
+          </script>";
+    exit();
+}
 // 檢查是否有 'AllData' session 變數，若無，則初始化為空陣列
 if (!isset($_SESSION['AllData'])) {
     $_SESSION['AllData'] = array();
