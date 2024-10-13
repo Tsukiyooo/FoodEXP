@@ -47,6 +47,16 @@
 <?php
     require_once 'db_con.php';
     session_start();
+
+    if (!isset($_SESSION['user'])) {
+        echo "<script>
+                alert('請先登入');
+                window.location.href = 'Login.html';
+              </script>";
+        exit();
+    }else{
+     $user=$_SESSION['user'];
+    }
     if (!isset($_SESSION['Data'])) {
         $_SESSION['Data'] = array();
     }
@@ -54,7 +64,7 @@
     //  echo $_GET['productName'];
     $productName=$_GET['productName'];
     $_SESSION['SelproductName']=$_GET['productName'];
-    $query = "SELECT id,name,kind,date FROM myfood WHERE name LIKE '%$productName%'ORDER BY date ASC";
+    $query = "SELECT id,name,kind, date,user FROM myfood WHERE user = '$user'&& name LIKE '%$productName%'ORDER BY date ASC";
     $result = mysqli_query($link, $query);
     $_SESSION['Data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

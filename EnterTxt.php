@@ -15,6 +15,8 @@
                        window.location.href = 'Login.html';
                      </script>";
                exit();
+           }else{
+            $user=$_SESSION['user'];
            }
            if (!isset($_SESSION['AllData'])) {
             $_SESSION['AllData'] = array();
@@ -24,8 +26,8 @@
             $productName = $_POST['productName'];
             $expiryDate = $_POST['expiryDate'];
             $kind=$_POST['kind'];
-            $master = "INSERT INTO myfood (name,kind,date) VALUES ('$productName', '$kind','$expiryDate')";
-            $mas = "INSERT INTO history (name,kind,date) VALUES ('$productName', '$kind', '$expiryDate')";
+            $master = "INSERT INTO myfood (name,kind,date,user) VALUES ('$productName', '$kind','$expiryDate','$user')";
+            $mas = "INSERT INTO history (name,kind,date,user) VALUES ('$productName', '$kind', '$expiryDate','$user')";
             $result = mysqli_query($link, $master);
             $res = mysqli_query($link, $mas);
            

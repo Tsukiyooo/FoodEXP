@@ -54,10 +54,21 @@
         <td class='table-cell remark'>備註</td>
         <td class='action'></td>
       </tr>";
+      session_start();
+      if (!isset($_SESSION['user'])) {
+          echo "<script>
+                  alert('請先登入');
+                  window.location.href = 'Login.html';
+                </script>";
+          exit();
+      }else{
+       $user=$_SESSION['user'];
+      }
+      
         if (!isset($_SESSION['ListData'])) {
             $_SESSION['ListData'] = array();
         }
-        $listmaster = "SELECT * FROM tobuy";
+        $listmaster = "SELECT * FROM tobuy WHERE user='$user'";
         $result = mysqli_query($link, $listmaster);
         $_SESSION['ListData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

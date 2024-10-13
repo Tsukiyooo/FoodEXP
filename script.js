@@ -20,7 +20,7 @@ document.getElementById('btn1').addEventListener('click', function() {
 
 
   document.getElementById('bt0').addEventListener('click', function() {
-    window.location.href = 'main.html';
+    window.location.href = 'main.php';
   });
   document.getElementById('bt1').addEventListener('click', function() {
       window.location.href = 'EnterPic_html.php';
@@ -36,6 +36,9 @@ document.getElementById('btn1').addEventListener('click', function() {
     });
     document.getElementById('bt5').addEventListener('click', function() {
       window.location.href = 'UserMap.html';
+    });
+    document.getElementById('bt6').addEventListener('click', function() {
+      window.location.href = 'Sign out.php';
     });
 
 // EnterTxt

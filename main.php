@@ -18,7 +18,11 @@
         if (isset($_SESSION['user'])) {
             echo $_SESSION['user'];  // 在 HTML 中显示用户的用户名
         } else {
-            echo "訪客";  // 如果 session 不存在，显示“訪客”
+            echo "<script>
+                       alert('請先登入');
+                       window.location.href = 'Login.html';
+                     </script>";
+               exit();
         }
         ?>
     </h1>

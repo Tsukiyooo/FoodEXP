@@ -41,6 +41,8 @@ if (!isset($_SESSION['user'])) {
             window.location.href = 'Login.html';
           </script>";
     exit();
+}else{
+    $user=$_SESSION['user'];
 }
 // 檢查是否有 'AllData' session 變數，若無，則初始化為空陣列
 if (!isset($_SESSION['AllData'])) {
@@ -48,7 +50,7 @@ if (!isset($_SESSION['AllData'])) {
 }
 
 // 取得所有資料庫中的資料
-$query = "SELECT * FROM myfood ORDER BY date ASC";
+$query = "SELECT * FROM myfood WHERE user = '$user' ORDER BY date ASC"; 
 $result = mysqli_query($link, $query);
 // 將資料存入 session 中
 $_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);

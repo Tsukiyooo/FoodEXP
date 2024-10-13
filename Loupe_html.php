@@ -25,7 +25,8 @@
       <li id="bt2">食品紀錄</li>
       <li id="bt3">購物清單</li>
       <li id="bt4">即期查詢</li>
-      <li id="bt5">推薦商家</li>
+      <!-- <li id="bt5">推薦商家</li> -->
+      <li id="bt6">登出</li>
     </ul>
   </div>
 </nav>
@@ -68,12 +69,20 @@
         require_once 'db_con.php';
 
         session_start();
-
+        if (!isset($_SESSION['user'])) {
+            echo "<script>
+                    alert('請先登入');
+                    window.location.href = 'Login.html';
+                  </script>";
+            exit();
+        }else{
+         $user=$_SESSION['user'];
+        }
         if (!isset($_SESSION['AllData'])) {
             $_SESSION['AllData'] = array();
         }
 
-        $query = "SELECT * FROM myfood ORDER BY date ASC"; // 修改為默認由遠到近
+        $query = "SELECT * FROM myfood WHERE user = '$user' ORDER BY date ASC";  //默認由遠到近
         $result = mysqli_query($link, $query);
         $_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

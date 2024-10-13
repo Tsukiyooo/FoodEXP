@@ -66,12 +66,19 @@
         require_once 'db_con.php';
 
         session_start();
-
+        if (!isset($_SESSION['user'])) {
+            echo "<script>
+                    alert('請先登入');
+                    window.location.href = 'Login.html';
+                  </script>";
+            exit();
+        }else{
+            $user=$_SESSION['user'];
+        }
         if (!isset($_SESSION['AllData'])) {
             $_SESSION['AllData'] = array();
         }
-
-        $query = "SELECT * FROM history ORDER BY date ASC"; // 修改為默認由近到遠
+        $query = "SELECT * FROM history WHERE user = '$user' ORDER BY date ASC";//默認由近到遠 
         $result = mysqli_query($link, $query);
         $_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

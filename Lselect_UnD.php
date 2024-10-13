@@ -50,7 +50,15 @@ require_once 'db_con.php';
 
 // 開啟 session
 session_start();
-
+if (!isset($_SESSION['user'])) {
+    echo "<script>
+            alert('請先登入');
+            window.location.href = 'Login.html';
+          </script>";
+    exit();
+}else{
+ $user=$_SESSION['user'];
+}
 // 檢查是否有 'AllData' session 變數，若無，則初始化為空陣列
 if (!isset($_SESSION['Data'])) {
     $_SESSION['Data'] = array();
@@ -59,7 +67,7 @@ if (!isset($_SESSION['Data'])) {
 // 取得所有資料庫中的資料
 
 $productName=$_SESSION['SelproductName'];
-$query = "SELECT id,name,kind, date FROM myfood WHERE name LIKE '%$productName%'ORDER BY date ASC";
+$query = "SELECT id,name,kind, date,user FROM myfood WHERE user = '$user'&& name LIKE '%$productName%'ORDER BY date ASC";
 $result = mysqli_query($link, $query);
 // 將資料存入 session 中
 $_SESSION['Data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);

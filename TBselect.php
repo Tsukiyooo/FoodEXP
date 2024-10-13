@@ -50,14 +50,22 @@ require_once 'db_con.php';
 echo "<tr align=center><td> 檢核 </td><td>品名</td><td>數量</td><td>備註</td><td>修改</td><td>刪除</td></tr>" ;
 
 session_start();
-
+if (!isset($_SESSION['user'])) {
+  echo "<script>
+          alert('請先登入');
+          window.location.href = 'Login.html';
+        </script>";
+  exit();
+}else{
+$user=$_SESSION['user'];
+}
 if (!isset($_SESSION['TBData'])) {
     $_SESSION['TBData'] = array();
 }
 $TBproductName=$_GET['TBproductName'];
 $_SESSION['TBproductName']=$_GET['TBproductName'];
 
-$query="SELECT id,name,quantity,remark FROM tobuy WHERE name LIKE '%$TBproductName%'";
+$query="SELECT id,name,quantity,remark,user FROM tobuy WHERE user='$user' && name LIKE '%$TBproductName%'";
 
 $result = mysqli_query($link, $query);
 $_SESSION['TBData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
