@@ -17,6 +17,9 @@ document.getElementById('btn1').addEventListener('click', function() {
   document.getElementById('btn5').addEventListener('click', function() {
     window.location.href = 'UserMap.html';
   });
+  document.getElementById('btn6').addEventListener('click', function() {
+    window.location.href = 'if sign out.php';
+  });
 
 
   document.getElementById('bt0').addEventListener('click', function() {
@@ -38,7 +41,7 @@ document.getElementById('btn1').addEventListener('click', function() {
       window.location.href = 'UserMap.html';
     });
     document.getElementById('bt6').addEventListener('click', function() {
-      window.location.href = 'Sign out.php';
+      window.location.href = 'if sign out.php';
     });
 
 // EnterTxt
@@ -248,6 +251,34 @@ window.addEventListener("click", function(event) {
     }
   });
 });
+
+//登出
+function Signout() {
+  if (confirm('確定要登出嗎？') == true) {
+    window.location.href = 'Sign out.php';
+  } else {
+      // document.getElementById('showtxt').innerHTML = '您已取消確認';
+      history.back();
+  }
+};
+
+// 監聽圖片的點擊事件，當點擊圖片時觸發文件上傳選擇
+document.getElementById('profileImage').addEventListener('click', function() {
+  document.getElementById('fileInput').click(); // 模擬點擊隱藏的文件上傳輸入框
+});
+
+// 監聽文件輸入的變化事件，當選擇文件時更換圖片
+document.getElementById('fileInput').addEventListener('change', function(event) {
+  const file = event.target.files[0]; // 獲取所選擇的文件
+  if (file) {
+      const reader = new FileReader(); // 創建 FileReader 來讀取文件
+      reader.onload = function(e) {
+          document.getElementById('profileImage').src = e.target.result; // 將圖片顯示為所選文件
+      };
+      reader.readAsDataURL(file); // 讀取文件為 Data URL
+  }
+});
+
 
 
 

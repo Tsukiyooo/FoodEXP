@@ -13,8 +13,10 @@ $users = "INSERT INTO users (user,password,email) VALUES ('$user', '$password','
 $result = mysqli_query($link, $users);
 echo "<div style='text-align: center; margin-top: 20px;'>";
     if ($result) {
-        echo "註冊成功！<br/>";
-        echo "<a href='Login.html'>回登入頁</a>";
+        echo "<script>
+                    alert('註冊成功！');
+                    window.location.href = 'Login.html';
+                  </script>";
     } else {
         echo "註冊失敗：" . mysqli_error($link) . "<br/>";
         echo "<a href='register.html'>回註冊頁</a>";

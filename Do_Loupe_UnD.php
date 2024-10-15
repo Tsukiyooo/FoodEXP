@@ -26,7 +26,8 @@
         <button class="btn" id="btn2"><span>食品</span><span>紀錄</span></button>
         <button class="btn" id="btn3"><span>購物</span><span>清單</span></button>
         <button class="btn" id="btn4"><span>即期</span><span>查詢</span></button>
-        <button class="btn" id="btn5"><span>推薦</span><span>商家</span></button> 
+        <button class="btn" id="btn5"><span>推薦</span><span>商家</span></button>
+        <button class="btn" id="btn6">登出</button>  
     </div>
 
     <?php
