@@ -15,11 +15,9 @@ document.getElementById('btn1').addEventListener('click', function() {
     window.location.href = 'Loupe_html.php';
   });
   document.getElementById('btn5').addEventListener('click', function() {
-    window.location.href = 'UserMap.html';
-  });
-  document.getElementById('btn6').addEventListener('click', function() {
     window.location.href = 'if sign out.php';
   });
+
 
 
   document.getElementById('bt0').addEventListener('click', function() {
@@ -160,15 +158,7 @@ checkboxes.forEach(function (checkbox) {
 });
 //ToBuyINSERT.php
 
-    function showConfirmationDialog() {
-        var result = confirm("家中尚有相同商品，是否要新增？");
-        if (result) {
-          
-            document.getElementById('submitForm').submit();
-        } else {
-            window.location.href = "ToBuyINSERT.html";
-        }
-    }
+    
 //Loupe_html.php
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('kind').addEventListener('change', updateProducts);
@@ -221,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
 var today = new Date();
     
 // 格式化日期為 YYYY-MM-DD
+today.setDate(today.getDate() + 3);
 var day = String(today.getDate()).padStart(2, '0');
 var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
 var year = today.getFullYear();

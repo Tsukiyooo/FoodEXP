@@ -41,11 +41,11 @@ while ($product = mysqli_fetch_assoc($result)) {
     $class = '';
 
     if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
-        continue; // 忽略即將過期的物品
+        $class = 'warning'; // 即將過期
     } elseif ($dateDifference > 0) {
-        continue; // 忽略尚未過期的物品
+        $class = 'safe'; // 尚未過期
     } else {
-        $class = 'expired'; // 已過期的物品
+        $class = 'expired'; // 已過期
     }
 
     $response .= "

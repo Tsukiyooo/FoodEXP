@@ -21,8 +21,8 @@
            if (!isset($_SESSION['AllData'])) {
             $_SESSION['AllData'] = array();
         }
-        
         if (isset($_POST['productName']) && isset($_POST['expiryDate'])) {
+            
             $productName = $_POST['productName'];
             $expiryDate = $_POST['expiryDate'];
             $kind=$_POST['kind'];
@@ -40,8 +40,21 @@
             echo "品名：" . $latestData['productName'] . "<br/>有效日期：" . $latestData['expiryDate'];
             print_r ($_SESSION['AllData'][0]);
         }
-        
+        $query = "SELECT id FROM myfood WHERE user = '$user' AND kind ='$kind' AND name ='$productName' AND date ='$expiryDate'";
+$result = mysqli_query($link, $query);
+
+// 检查查询是否成功，并获取结果
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $id = $row['id'];
+} else {
+    echo '无法找到对应的 ID';
+    exit(); // 如果未找到 ID，则终止脚本
+}
         mysqli_close($link);
+       
+      
+
         header("Location:EnterTxt.html");
 ?> 
             </body>

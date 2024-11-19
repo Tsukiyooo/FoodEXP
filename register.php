@@ -25,4 +25,32 @@ echo "<div style='text-align: center; margin-top: 20px;'>";
 
 mysqli_close($link);
 }
+
+ $firebaseUrl = "https://foodexp-bc56a-default-rtdb.firebaseio.com/";
+
+ // 需要儲存的資料
+ $data = [
+  "user" => $user,
+  "password" => $password,
+  "email" => $email
+ ];
+
+ // 將資料轉為 JSON 格式
+ $jsonData = json_encode($data);
+
+ // 初始化 curl
+ $ch = curl_init();
+ curl_setopt($ch, CURLOPT_URL, $firebaseUrl . 'users/'.$user.'.json'); // "users" 是資料庫節點名稱
+ curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+ curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+ curl_setopt($ch, CURLOPT_HTTPHEADER, [
+  'Content-Type: application/json',
+ ]);
+
+ // 發送請求並取得回應
+//  $response = curl_exec($ch);
+//  curl_close($ch);
+
+//  echo "Firebase 回應：" . $response;
 ?>

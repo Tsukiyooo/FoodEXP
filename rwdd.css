@@ -479,8 +479,8 @@ input[type="checkbox"] {
 
 .button-c {
   display: inline-block;
-  vertical-align: middle; /* 將按鈕與文本垂直對齊 */
-  margin-left: 10px; /* 與品名文字之間的距離 */
+   vertical-align: middle; /*將按鈕與文本垂直對齊 */ 
+   margin-left: 10px; /*與品名文字之間的距離*/
   margin-top: -10px; /* 上移按鈕 */
 }
 
@@ -638,7 +638,10 @@ td.action, th.action {
   }
 
   .action-btn {
-    font-size: 18px; /* 調整按鈕文字大小 */
+    font-size: 20px; /* 調整按鈕文字大小 */
+      margin: 1px;
+      padding: 2px 5px;
+      background-color: inherit;
   }
 
   td {
