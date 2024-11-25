@@ -15,10 +15,10 @@ document.getElementById('btn1').addEventListener('click', function() {
     window.location.href = 'Loupe_html.php';
   });
   document.getElementById('btn5').addEventListener('click', function() {
-    window.location.href = 'if sign out.php';
+    window.location.href = 'UserMap.html';
   });
   document.getElementById('btn6').addEventListener('click', function() {
-    window.location.href = 'UserMap.html';
+    window.location.href = 'if sign out.php';
   });
 
 
@@ -274,20 +274,7 @@ document.getElementById('fileInput').addEventListener('change', function(event) 
 });
 
 
-// Example using Firebase SDK
-import { getToken } from 'firebase/messaging';
-import { messaging } from './firebase-config'; // 初始化 Firebase 项目
 
-getToken(messaging, { vapidKey: 'BPnrFDwLLZC7eVnNK2DTw5PgCAKVKNlSqLc6GhaZ86Bjo2b5L9lPnQh-3AEwDOUy3Ee1gJUbofiKx83obSteL5I' }).then((currentToken) => {
-  if (currentToken) {
-    console.log('FCM Device Token:', currentToken);
-    // 将 token 存入数据库，关联到用户
-  } else {
-    console.log('无法获取 Token。检查通知权限');
-  }
-}).catch((err) => {
-  console.log('获取 Token 出错: ', err);
-});
 
 
 

@@ -61,8 +61,9 @@
         <button class="btn" id="btn2"><span>食品</span><span>紀錄</span></button>
         <button class="btn" id="btn3"><span>購物</span><span>清單</span></button>
         <button class="btn" id="btn4"><span>即期</span><span>查詢</span></button>
-        <button class="btn" id="btn5"><span>推薦</span><span>商家</span></button> 
-        <button class="btn" id="btn6">登出</button> 
+        <button class="btn" id="btn6"><span>推薦</span><span>商家</span></button> 
+        <button class="btn" id="btn5">登出</button> 
+        
     </div>
     <div id="product-list">
         <!-- 產品列表將在這裡顯示 -->
@@ -99,8 +100,7 @@
     }
 }
 $emailContent = "<h2>即期商品提醒通知</h2><p>親愛的".$user."，以下是您家中即將到期的商品清單：</p><ul>";
-$hasExpiringItems = false;        
-$result = mysqli_query($link, $query);
+        $result = mysqli_query($link, $query);
         $_SESSION['AllData'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $allData = $_SESSION['AllData'];
         if (isset($_SESSION['AllData'])) {
@@ -190,30 +190,27 @@ $result = mysqli_query($link, $query);
         // echo $emailContent;
         if ($hasExpiringItems) {
             $mail = new PHPMailer(true);
-        
-            // try {
-                // 設定 SMTP
-                $mail->isSMTP();
-                $mail->CharSet = 'UTF-8'; // 設定字符集為 UTF-8
-                $mail->Host = 'smtp.gmail.com'; // 使用 Gmail SMTP 伺服器
-                $mail->SMTPAuth = true;
-                $mail->Username = 'penny911030@gmail.com'; // 你的 Gmail 地址
-                $mail->Password = 'bwfz nhxj wdgq zcce'; // 你的 Gmail 應用程式密碼
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
-        
-                // 設定發信人與收信人
-                $mail->setFrom('penny911030@gmail.com', '食品管理系統');
-                $mail->addAddress($email);
-        
-                // 設定郵件內容
-                $mail->isHTML(true);
-                $mail->Subject = '即期商品提醒通知';
-                $mail->Body = $emailContent;
-        
-                // 發送郵件
-                $mail->send();
-                // echo "即期商品提醒郵件已成功發送給 $email<br>";
+            $messageBody = "品名：{$product['name']}，有效日期：{$product['date']}";
+            $emailContent .= "- $messageBody\n";
+            $fcmPayload = [
+                'to' => $firebaseToken,
+                'notification' => [
+                    'title' => '即期商品提醒通知',
+                    'body' => $messageBody,
+                    'click_action' => 'https://your-web-app-url.com',
+                ],
+                'data' => [
+                    'product_id' => $product['id'],
+                    'product_name' => $product['name'],
+                    'expiry_date' => $product['date'],
+                ],
+            ];
+
+            // 設定 HTTP Headers
+            $headers = [
+                'Authorization: key=' . $serverKey,
+                'Content-Type: application/json',
+            ];
             }
         //  catch (Exception $e) {
         //         echo "郵件發送失敗：{$mail->ErrorInfo}";
