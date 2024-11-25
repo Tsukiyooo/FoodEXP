@@ -45,10 +45,10 @@
         <img src="pic/loupe.png" alt="即期查詢">
         <p>即期查詢</p>
     </a>
-    <!-- <a href="UserMap.html">
+    <a href="UserMap.html">
         <img src="pic/shop.png" alt="推薦商家">
         <p>推薦商家</p>
-    </a> -->
+    </a>
     <!-- <a href="page6.html">
         <img src="pic/where.png" alt="東西在哪">
         <p>東西在哪</p>

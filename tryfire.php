@@ -69,10 +69,10 @@
         <!-- 產品列表將在這裡顯示 -->
         <?php
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+    // use PHPMailer\PHPMailer\PHPMailer;
+    // use PHPMailer\PHPMailer\Exception;
 
-        require 'vendor/autoload.php';
+        // require 'vendor/autoload.php';
         require_once 'db_con.php';
 
         session_start();
@@ -113,7 +113,9 @@ $emailContent = "<h2>即期商品提醒通知</h2><p>親愛的".$user."，以下
         
                 if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
                     $class = 'warning';
-                    $hasExpiringItems = true;
+                    // $hasExpiringItems = true;
+                    $warningcheck=true;
+                    $warningProducts = [];
                     $firebaseUrl = "https://foodexp-bc56a-default-rtdb.firebaseio.com/";
 
  // 需要儲存的資料
@@ -126,10 +128,8 @@ $emailContent = "<h2>即期商品提醒通知</h2><p>親愛的".$user."，以下
   "user" => $product['user'],
   "email"=>$email
  ];
-
- // 將資料轉為 JSON 格式
  $jsonData = json_encode($data);
-
+ 
  // 初始化 curl
  $ch = curl_init();
  curl_setopt($ch, CURLOPT_URL, $firebaseUrl . 'remind/'.$product['id'].'.json'); // "users" 是資料庫節點名稱
@@ -139,7 +139,7 @@ $emailContent = "<h2>即期商品提醒通知</h2><p>親愛的".$user."，以下
  curl_setopt($ch, CURLOPT_HTTPHEADER, [
   'Content-Type: application/json',
  ]);
- $emailContent .= "<li><strong>品名：</strong>".$product['name']."，<strong>到期日：</strong>".$product['date']."</li>";
+//  $emailContent .= "<li><strong>品名：</strong>".$product['name']."，<strong>到期日：</strong>".$product['date']."</li>";
                     
                 } elseif ($dateDifference > 0) {
                     $class = 'safe';
@@ -185,36 +185,176 @@ $emailContent = "<h2>即期商品提醒通知</h2><p>親愛的".$user."，以下
 
         mysqli_close($link);
 
+if($warningcheck){
+    $email = urlencode($email);
+ $sanitizedEmail = str_replace(['@', '.'], '_', $email); 
+ $userTokenUrl = $firebaseUrl . "remind/" . $sanitizedEmail . ".json";
+echo $userTokenUrl;
+//  $userTokenUrl = $firebaseUrl . 'remind/' . $email . '.json';
+ $token = file_get_contents($userTokenUrl);
+$token = json_decode($token, true);
 
-        $emailContent .= "</ul><p>請儘快處理這些商品，以避免浪費食材！</p>";
+ // 將資料轉為 JSON 格式
+ $jsonData = json_encode($data);
+ $send = curl_init();
+ curl_setopt($send, CURLOPT_URL, $userTokenUrl);
+ curl_setopt($send, CURLOPT_RETURNTRANSFER, true);
+ $response = curl_exec($send);
+ $httpCode = curl_getinfo($send, CURLINFO_HTTP_CODE);
+ curl_close($send);
+}
+
+if ($token) {
+    // 遍歷所有產品
+    foreach ($_SESSION['AllData'] as $product) {
+        $expiryDate = strtotime($product['date']);
+        $currentDate = strtotime(date('Y-m-d'));
+        $dateDifference = $expiryDate - $currentDate;
+
+        if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
+            // 收集 warning 商品資訊
+            $warningProducts[] = [
+                "name" => $product['name'],
+                "date" => $product['date'],
+            ];
+        }
+    }
+
+    // 如果有 warning 的商品，發送整合通知
+    if (!empty($warningProducts)) {
+        // 構建通知內容
+        $productList = "";
+        foreach ($warningProducts as $item) {
+            $productList .= "品名：{$item['name']}，到期日：{$item['date']}\n";
+        }
+
+        $notification = [
+            "title" => "食品即將到期提醒",
+            "body" => "以下商品即將到期：\n" . $productList,
+            "icon" => "https://example.com/icon.png", // 替換為實際圖示 URL
+        ];
+
+        $fcmData = [
+            "to" => $token, // 使用者的 FCM token
+            "notification" => $notification,
+        ];
+
+        $headers = [
+            'Authorization: INdy77JapMr7sFmaYzZ_tcKg-XtREY1mgsw_FNru5q8', // 替換為 Firebase 伺服器金鑰
+            'Content-Type: application/json',
+        ];
+
+        // 發送 FCM 請求
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmData));
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        // 檢查結果
+        if ($result) {
+            error_log("整合通知已發送至用戶：$user");
+        } else {
+            error_log("通知發送失敗：$user");
+        }
+    }
+} else {
+    error_log("無法獲取用戶的 FCM Token");
+}
+if ($token) {
+    // 遍歷所有產品
+    foreach ($_SESSION['AllData'] as $product) {
+        $expiryDate = strtotime($product['date']);
+        $currentDate = strtotime(date('Y-m-d'));
+        $dateDifference = $expiryDate - $currentDate;
+
+        if ($dateDifference > 0 && $dateDifference <= 3 * 24 * 60 * 60) {
+            // 收集 warning 商品資訊
+            $warningProducts[] = [
+                "name" => $product['name'],
+                "date" => $product['date'],
+            ];
+        }
+    }
+
+    // 如果有 warning 的商品，發送整合通知
+    if (!empty($warningProducts)) {
+        // 構建通知內容
+        $productList = "";
+        foreach ($warningProducts as $item) {
+            $productList .= "品名：{$item['name']}，到期日：{$item['date']}\n";
+        }
+
+        $notification = [
+            "title" => "食品即將到期提醒",
+            "body" => "以下商品即將到期：\n" . $productList,
+            "icon" => "https://example.com/icon.png", // 替換為實際圖示 URL
+        ];
+
+        $fcmData = [
+            "to" => "11033247@gm.chihlee.edu.tw", // 使用者的 FCM token
+            // "to" => $token, // 使用者的 FCM token
+            "notification" => $notification,
+        ];
+
+        $headers = [
+            'Authorization: INdy77JapMr7sFmaYzZ_tcKg-XtREY1mgsw_FNru5q8', // 替換為 Firebase 伺服器金鑰
+            'Content-Type: application/json',
+        ];
+
+        // 發送 FCM 請求
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmData));
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        // 檢查結果
+        if ($result) {
+            error_log("整合通知已發送至用戶：$user");
+        } else {
+            error_log("通知發送失敗：$user");
+        }
+    }
+} else {
+    error_log("無法獲取用戶的 FCM Token");
+}
+
+        // $emailContent .= "</ul><p>請儘快處理這些商品，以避免浪費食材！</p>";
         // echo $emailContent;
-        if ($hasExpiringItems) {
-            $mail = new PHPMailer(true);
+        // if ($hasExpiringItems) {
+        //     $mail = new PHPMailer(true);
         
-            // try {
-                // 設定 SMTP
-                $mail->isSMTP();
-                $mail->CharSet = 'UTF-8'; // 設定字符集為 UTF-8
-                $mail->Host = 'smtp.gmail.com'; // 使用 Gmail SMTP 伺服器
-                $mail->SMTPAuth = true;
-                $mail->Username = 'penny911030@gmail.com'; // 你的 Gmail 地址
-                $mail->Password = 'bwfz nhxj wdgq zcce'; // 你的 Gmail 應用程式密碼
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port = 587;
+        //     // try {
+        //         // 設定 SMTP
+        //         $mail->isSMTP();
+        //         $mail->CharSet = 'UTF-8'; // 設定字符集為 UTF-8
+        //         $mail->Host = 'smtp.gmail.com'; // 使用 Gmail SMTP 伺服器
+        //         $mail->SMTPAuth = true;
+        //         $mail->Username = 'penny911030@gmail.com'; // 你的 Gmail 地址
+        //         $mail->Password = 'bwfz nhxj wdgq zcce'; // 你的 Gmail 應用程式密碼
+        //         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        //         $mail->Port = 587;
         
-                // 設定發信人與收信人
-                $mail->setFrom('penny911030@gmail.com', '食品管理系統');
-                $mail->addAddress($email);
+        //         // 設定發信人與收信人
+        //         $mail->setFrom('penny911030@gmail.com', '食品管理系統');
+        //         $mail->addAddress($email);
         
-                // 設定郵件內容
-                $mail->isHTML(true);
-                $mail->Subject = '即期商品提醒通知';
-                $mail->Body = $emailContent;
+        //         // 設定郵件內容
+        //         $mail->isHTML(true);
+        //         $mail->Subject = '即期商品提醒通知';
+        //         $mail->Body = $emailContent;
         
-                // 發送郵件
-                $mail->send();
+        //         // 發送郵件
+        //         $mail->send();
                 // echo "即期商品提醒郵件已成功發送給 $email<br>";
-            }
+            // }
         //  catch (Exception $e) {
         //         echo "郵件發送失敗：{$mail->ErrorInfo}";
         //     }
